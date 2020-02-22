@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c01ef20-4bf6-493f-95ac-fe8554822a75" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/project/lightbot_v2.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/interpreter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/interpreter_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/interpreter_v2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +22,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Y1S0bUOjJXoSXQnvrVaF5hp9ij" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -33,7 +36,7 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.interpreter_v2">
     <configuration name="interpreter" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Nikorter" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -76,8 +79,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="interpreter_v2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Nikorter" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/project" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/project/interpreter_v2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.interpreter" />
+      <item itemvalue="Python.interpreter_v2" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.interpreter_v2" />
         <item itemvalue="Python.interpreter" />
         <item itemvalue="Python.interpreter" />
       </list>
@@ -94,37 +123,53 @@
       <option name="presentableId" value="Default" />
       <updated>1582108384887</updated>
     </task>
+    <task id="LOCAL-00001" summary="Just fixes">
+      <created>1582382258972</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1582382258973</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Just fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Just fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="104" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582379662097">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="104" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1582379662097" />
-    <state x="264" y="2" key="CommitChangelistDialog2" timestamp="1582379440778">
+    <state x="264" y="2" key="CommitChangelistDialog2" timestamp="1582406369437">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="264" y="2" key="CommitChangelistDialog2/0.0.1280.800@0.0.1280.800" timestamp="1582379440778" />
-    <state width="1259" height="212" key="GridCell.Tab.0.bottom" timestamp="1582381629823">
+    <state x="264" y="2" key="CommitChangelistDialog2/0.0.1280.800@0.0.1280.800" timestamp="1582406369437" />
+    <state width="1259" height="212" key="GridCell.Tab.0.bottom" timestamp="1582406222873">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1582381629823" />
-    <state width="1259" height="212" key="GridCell.Tab.0.center" timestamp="1582381629822">
+    <state width="1259" height="212" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1582406222873" />
+    <state width="1259" height="212" key="GridCell.Tab.0.bottom/0.23.1280.713@0.23.1280.713" timestamp="1582383462354" />
+    <state width="1259" height="212" key="GridCell.Tab.0.center" timestamp="1582406222872">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1582381629822" />
-    <state width="1259" height="212" key="GridCell.Tab.0.left" timestamp="1582381629821">
+    <state width="1259" height="212" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1582406222872" />
+    <state width="1259" height="212" key="GridCell.Tab.0.center/0.23.1280.713@0.23.1280.713" timestamp="1582383462353" />
+    <state width="1259" height="212" key="GridCell.Tab.0.left" timestamp="1582406222871">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1582381629821" />
-    <state width="1259" height="212" key="GridCell.Tab.0.right" timestamp="1582381629823">
+    <state width="1259" height="212" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1582406222871" />
+    <state width="1259" height="212" key="GridCell.Tab.0.left/0.23.1280.713@0.23.1280.713" timestamp="1582383462353" />
+    <state width="1259" height="212" key="GridCell.Tab.0.right" timestamp="1582406222873">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="212" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1582381629823" />
-    <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582379502006">
+    <state width="1259" height="212" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1582406222873" />
+    <state width="1259" height="212" key="GridCell.Tab.0.right/0.23.1280.713@0.23.1280.713" timestamp="1582383462353" />
+    <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582382281198">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.800@0.0.1280.800" timestamp="1582379502006" />
+    <state x="423" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.800@0.0.1280.800" timestamp="1582382281198" />
     <state x="305" y="124" width="670" height="676" key="search.everywhere.popup" timestamp="1582378471665">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
