@@ -2,6 +2,8 @@
 
     #outside: inside
     code: code
+    console: console
+    robot: robot
 
     BoxLayout:
         size: root.width, root.height
@@ -12,13 +14,23 @@
                 id: code
 
             CodeInput:
-                text: "Log"
+                id: console
+
 
             Button:
                 text: "Interpret"
                 size_hint_y: None
                 height: 100
-                on_press: root.get_code()
+                on_press: root.get_code(), root.set_console(), root.move_robot()
 
         Widget:
-
+            id: robot
+            pos: 0,0
+            canvas:
+                Color:
+                    rgb: (0,0.5,1)
+                Rectangle:
+                    # TODO add texture to robot
+                    #source: 'bg.png'
+                    pos: self.pos
+                    size: (100,100)
