@@ -1,0 +1,4 @@
+move.up;
+move.left;
+move.down;
+move.right;
