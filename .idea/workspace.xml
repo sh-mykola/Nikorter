@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c01ef20-4bf6-493f-95ac-fe8554822a75" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/project/interpreter_defcode_v2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/project/animator_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/interpreter_code_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/interpreter_code_v2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/interpreter_defcode_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/interpreter_defcode_v2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/interpreter_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/interpreter_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/lightbot_v2.kv" beforeDir="false" afterPath="$PROJECT_DIR$/project/lightbot_v2.kv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582412399261</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Some animation functoins">
+      <created>1582460264792</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582460264792</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,37 +173,38 @@
     <MESSAGE value="Just fixes" />
     <MESSAGE value="KV added :)" />
     <MESSAGE value="It is ALIVE!!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="It is ALIVE!!!" />
+    <MESSAGE value="Some animation functoins" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some animation functoins" />
   </component>
   <component name="WindowStateProjectService">
     <state x="104" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582379662097">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="104" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1582379662097" />
-    <state x="264" y="2" key="CommitChangelistDialog2" timestamp="1582412399171">
+    <state x="264" y="2" key="CommitChangelistDialog2" timestamp="1582460264661">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="264" y="2" key="CommitChangelistDialog2/0.0.1280.800@0.0.1280.800" timestamp="1582412399171" />
-    <state width="1259" height="165" key="GridCell.Tab.0.bottom" timestamp="1582460154071">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state x="264" y="2" key="CommitChangelistDialog2/0.0.1280.800@0.0.1280.800" timestamp="1582460264661" />
+    <state width="1259" height="165" key="GridCell.Tab.0.bottom" timestamp="1582464191970">
+      <screen x="0" y="23" width="1280" height="713" />
     </state>
-    <state width="1259" height="165" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1582460154071" />
-    <state width="1259" height="212" key="GridCell.Tab.0.bottom/0.23.1280.713@0.23.1280.713" timestamp="1582383462354" />
-    <state width="1259" height="165" key="GridCell.Tab.0.center" timestamp="1582460154070">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="1259" height="165" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1582461170459" />
+    <state width="1259" height="165" key="GridCell.Tab.0.bottom/0.23.1280.713@0.23.1280.713" timestamp="1582464191970" />
+    <state width="1259" height="165" key="GridCell.Tab.0.center" timestamp="1582464191969">
+      <screen x="0" y="23" width="1280" height="713" />
     </state>
-    <state width="1259" height="165" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1582460154070" />
-    <state width="1259" height="212" key="GridCell.Tab.0.center/0.23.1280.713@0.23.1280.713" timestamp="1582383462353" />
-    <state width="1259" height="165" key="GridCell.Tab.0.left" timestamp="1582460154070">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="1259" height="165" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1582461170458" />
+    <state width="1259" height="165" key="GridCell.Tab.0.center/0.23.1280.713@0.23.1280.713" timestamp="1582464191969" />
+    <state width="1259" height="165" key="GridCell.Tab.0.left" timestamp="1582464191969">
+      <screen x="0" y="23" width="1280" height="713" />
     </state>
-    <state width="1259" height="165" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1582460154070" />
-    <state width="1259" height="212" key="GridCell.Tab.0.left/0.23.1280.713@0.23.1280.713" timestamp="1582383462353" />
-    <state width="1259" height="165" key="GridCell.Tab.0.right" timestamp="1582460154071">
-      <screen x="0" y="0" width="1280" height="800" />
+    <state width="1259" height="165" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1582461170457" />
+    <state width="1259" height="165" key="GridCell.Tab.0.left/0.23.1280.713@0.23.1280.713" timestamp="1582464191969" />
+    <state width="1259" height="165" key="GridCell.Tab.0.right" timestamp="1582464191970">
+      <screen x="0" y="23" width="1280" height="713" />
     </state>
-    <state width="1259" height="165" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1582460154071" />
-    <state width="1259" height="212" key="GridCell.Tab.0.right/0.23.1280.713@0.23.1280.713" timestamp="1582383462353" />
+    <state width="1259" height="165" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1582461170458" />
+    <state width="1259" height="165" key="GridCell.Tab.0.right/0.23.1280.713@0.23.1280.713" timestamp="1582464191970" />
     <state width="1259" height="263" key="GridCell.Tab.1.bottom" timestamp="1582459261984">
       <screen x="0" y="0" width="1280" height="800" />
     </state>

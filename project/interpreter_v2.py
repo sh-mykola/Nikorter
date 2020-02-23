@@ -2,6 +2,9 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.animation import Animation
+from kivy.clock import Clock
+from functools import partial
+
 
 from kivy.config import Config
 Config.set("graphics", "resizable", "0")
@@ -27,6 +30,13 @@ def move_general(self):
     anim.start(self.robot)
     print(self.robot.pos)
 
+time = 0
+
+def timer():
+    global time
+    time+=0.3
+    return time
+
 class MyProgram(Widget):
     code = ObjectProperty(None)
     console = ObjectProperty(None)
@@ -41,17 +51,21 @@ class MyProgram(Widget):
         pos = move_up(pos)
 
         self.robot.pos = pos"""
-     # TODO Border checker
+    # TODO Border checker
     # TODO Code input / Console out style
     # TODO Add different animations to own code by kivy animator
+    # TODO Publish on GitHub in ideal version for portfolio
     def move_robot(self):
-        anim = Animation()
-        anim = move_up(self, 5, anim)
-        anim = move_down(self, 1, anim)
-        anim = move_right(self, 4, anim)
-        anim = move_down(self, 1, anim)
-        anim = move_left(self, 3, anim)
-        anim = anim.start(self.robot)
+        Clock.schedule_once(partial(move_up, self, 12), timer())
+        Clock.schedule_once(partial(move_right, self, 3), timer())
+        Clock.schedule_once(partial(move_down, self, 2), timer())
+        Clock.schedule_once(partial(move_up, self, 1), timer())
+        Clock.schedule_once(partial(move_left, self, 2), timer())
+
+        global time
+        time = 0
+
+        #move_down(self, 1)
         #self.robot.pos[0] += 100
 
     def set_console(self):
