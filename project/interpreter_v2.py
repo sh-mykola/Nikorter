@@ -1,6 +1,8 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
+from kivy.clock import Clock
+from functools import partial
 from kivy.animation import Animation
 
 from kivy.config import Config
@@ -9,7 +11,10 @@ Config.set("graphics", "resizable", "0")
 Config.set("graphics", "width", "1000")
 Config.set("graphics", "height", "650")
 
-from interpreter_code_v2 import move_algorithm
+import interpreter_code_v2
+from importlib import reload
+import sys
+import time as tm
 
 console_log = "CONSOLE LOG:\n"
 
@@ -21,6 +26,7 @@ def create_code(code_plain):
     code = code_plain.split("\n")
     for i in code:
         f.write("\t{}\n".format(i))
+    f.write("\tpass\n")
     f.close()
 
 time = 0
@@ -29,6 +35,7 @@ def timer():
     time += 0.3
     return time
 
+create_code("")
 
 class MyProgram(Widget):
     code = ObjectProperty(None)
@@ -40,8 +47,10 @@ class MyProgram(Widget):
         code = self.code.text
         create_code(code)
         #starting code
-        move_up(self, 2, timer())
-        move_algorithm(self)
+        # move_up(self, 2, timer())
+        reload(interpreter_code_v2)
+        interpreter_code_v2.move_algorithm(self)
+        #Clock.schedule_once(partial(move_algorithm, self), 2)
         #setting console
         self.console.text = console_log
 
