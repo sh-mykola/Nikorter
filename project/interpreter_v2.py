@@ -13,8 +13,15 @@ Config.set("graphics", "height", "650")
 
 import interpreter_code_v2
 from importlib import reload
-import sys
-import time as tm
+import logging
+#Create and configure logger
+LOG_FORMAT = "%(levelname)s %(asctime)s %(message)s"
+logging.basicConfig(filename="/Volumes/Niko/Python/Nikorter/project/console.log",
+                    level = logging.DEBUG,
+                    format = LOG_FORMAT,
+                    filemode = "w")
+logger = logging.getLogger()
+logger.info("Initialization")
 
 console_log = "CONSOLE LOG:\n"
 
@@ -53,6 +60,12 @@ class MyProgram(Widget):
         #Clock.schedule_once(partial(move_algorithm, self), 2)
         #setting console
         self.console.text = console_log
+
+    def reset_position(self):
+        Animation.cancel_all(self.robot)
+        anim = Animation(x = 1000, y = 0, duration=0.4, t='in_out_cubic')
+        anim.start(self.robot)
+        #self.robot.pos = [1000, 0]
 
 
     # TODO Make special location for robot

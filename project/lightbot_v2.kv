@@ -16,12 +16,15 @@
             CodeInput:
                 id: console
 
-
-            Button:
-                text: "Interpret"
+            BoxLayout:
                 size_hint_y: None
                 height: 100
-                on_press: root.start_interpret()
+                Button:
+                    text: "Interpret"
+                    on_press: root.start_interpret()
+                Button:
+                    text: "Reset position"
+                    on_press: root.reset_position()
 
         Widget:
             id: robot

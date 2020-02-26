@@ -5,5 +5,6 @@ def timer():
 	time += 0.3
 	return time
 def move_algorithm(self):
-	move_up(self, 5, timer())
+	move_up(self, 2, timer())
+	move_right(self, 2, timer())
 	pass
