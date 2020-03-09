@@ -12,6 +12,7 @@ Config.set("graphics", "width", "1000")
 Config.set("graphics", "height", "650")
 
 import interpreter_code_v2
+import interpreter_code
 from importlib import reload
 import logging
 #Create and configure logger
@@ -30,8 +31,7 @@ def create_code(code_plain):
     f.write("from interpreter_defcode_v2 import move_up, move_down, move_right, move_left")
     f.write("\ntime = 0\ndef timer():\n\tglobal time\n\ttime += 0.3\n\treturn time")
     f.write("\ndef move_algorithm(self):\n")
-    code = code_plain.split("\n")
-    for i in code:
+    for i in code_plain:
         f.write("\t{}\n".format(i))
     f.write("\tpass\n")
     f.close()
@@ -52,14 +52,22 @@ class MyProgram(Widget):
     def start_interpret(self):
         #getting code
         code = self.code.text
-        create_code(code)
+        if code == "":
+            return
+        reload(interpreter_code)
+        data = interpreter_code.run(code)
+        if len(data[0]) == 0 or data[0][0] == "Error!" or data[2] == True:
+            self.console.text = "Error!"
+            return
+
+        create_code(data[0])
         #starting code
         # move_up(self, 2, timer())
         reload(interpreter_code_v2)
         interpreter_code_v2.move_algorithm(self)
         #Clock.schedule_once(partial(move_algorithm, self), 2)
         #setting console
-        self.console.text = console_log
+        self.console.text = data[1]
 
     def reset_position(self):
         Animation.cancel_all(self.robot)
@@ -85,6 +93,7 @@ class MyProgram(Widget):
     # TODO Code input / Console out style
     # TODO Add different animations to own code by kivy animator
     # TODO Publish on GitHub in ideal version for portfolio
+    # TODO Animation change +  color change as parametr in kiv  by global variable
 
 
 class LightBot_v2App(App):
@@ -100,4 +109,5 @@ if __name__ == "__main__":
 
 # TODO Create lexer
 # TODO Create tree viewer in lexer
-# TODO Create
+# TODO Transfer console to pogram
+# TODO System events: (change color, change animation, last function)

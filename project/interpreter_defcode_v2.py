@@ -6,23 +6,39 @@ from functools import partial
 def move_up_main(self, times, *largs):
     #check = self.robot.pos[1] + 100 * times
     #self.robot.pos[1] += 100 *times
-    anim = Animation(y=self.robot.pos[1] + 100 * times, duration=0.2, t='in_out_cubic')
-    anim.start(self.robot)
+    if (self.robot.pos[1] + 100 * times <= 1200):
+        anim = Animation(y=self.robot.pos[1] + 100 * times, duration=0.2, t='in_out_cubic')
+        anim.start(self.robot)
+        print("Current pos:" + str(self.robot.pos))
+    else:
+        print("Error! Out of border")
 
 
 def move_down_main(self, times, *largs):
     #self.robot.pos[1] -= 100 *times
-    anim = Animation(y=self.robot.pos[1] - 100 * times, duration=0.2, t='in_out_cubic')
-    anim.start(self.robot)
+    if (self.robot.pos[1] - 100 * times >= 0):
+        anim = Animation(y=self.robot.pos[1] - 100 * times, duration=0.2, t='in_out_cubic')
+        anim.start(self.robot)
+        print("Current pos:" + str(self.robot.pos))
+    else:
+        print("Error! Out of border")
 
 
 def move_right_main(self, times, *largs):
-    anim = Animation(x=self.robot.pos[0] + 100*times, duration=0.2, t='in_out_cubic')
-    anim.start(self.robot)
+    if (self.robot.pos[0] + 100 * times <= 1900):
+        anim = Animation(x=self.robot.pos[0] + 100*times, duration=0.2, t='in_out_cubic')
+        anim.start(self.robot)
+        print("Current pos:" + str(self.robot.pos))
+    else:
+        print("Error! Out of border")
 
 def move_left_main(self, times, *largs):
-    anim = Animation(x=self.robot.pos[0] - 100*times, duration=0.2, t='in_out_cubic')
-    anim.start(self.robot)
+    if (self.robot.pos[0] - 100 * times >= 1000):
+        anim = Animation(x=self.robot.pos[0] - 100*times, duration=0.2, t='in_out_cubic')
+        anim.start(self.robot)
+        print("Current pos:" + str(self.robot.pos))
+    else:
+        print("Error! Out of border")
 
 def move_up(self, times, timer):
     Clock.schedule_once(partial(move_up_main, self, times), timer)
