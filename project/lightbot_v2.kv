@@ -23,15 +23,16 @@
                     text: "Interpret"
                     on_press: root.start_interpret()
                 Button:
-                    text: "Reset position"
+                    text: "Reset"
                     on_press: root.reset_position()
 
         Widget:
             id: robot
             pos: 0,0
+            rgb: (0,0.5,1)
             canvas.before:
                 Color:
-                    rgb: (0,0.5,1)
+                    rgb: self.rgb
                 Rectangle:
                     # TODO add texture to robot
                     #source: 'bg.png'

@@ -28,7 +28,7 @@ console_log = "CONSOLE LOG:\n"
 
 def create_code(code_plain):
     f = open("interpreter_code_v2.py", "w+")
-    f.write("from interpreter_defcode_v2 import move_up, move_down, move_right, move_left")
+    f.write("from interpreter_defcode_v2 import move_up, move_down, move_right, move_left, change_color")
     f.write("\ntime = 0\ndef timer():\n\tglobal time\n\ttime += 0.3\n\treturn time")
     f.write("\ndef move_algorithm(self):\n")
     for i in code_plain:
@@ -70,6 +70,8 @@ class MyProgram(Widget):
         self.console.text = data[1]
 
     def reset_position(self):
+        self.console.text = "Reseted"
+        self.robot.rgb = (1, 1, 1)
         Animation.cancel_all(self.robot)
         anim = Animation(x = 1000, y = 0, duration=0.4, t='in_out_cubic')
         anim.start(self.robot)
@@ -111,3 +113,5 @@ if __name__ == "__main__":
 # TODO Create tree viewer in lexer
 # TODO Transfer console to pogram
 # TODO System events: (change color, change animation, last function)
+# TODO Open from file
+# TODO Random location and color

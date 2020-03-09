@@ -1,0 +1,6 @@
+last.color[ff0000]
+color[0000ff]
+move.up(2)
+color[00ff00]
+move.right(4).animation(2)
+last.move.up(2).animation(3)
