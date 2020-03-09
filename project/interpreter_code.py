@@ -47,7 +47,7 @@ def lexer(plain_code):
             set_color = True
             tok = ""
         elif tok == "]":
-            if len(temp_color) != 6:
+            if len(temp_color) != 7:
                 tokens = ["Error!"]
                 return tokens
             tokens.append("CODE:" + temp_color)
@@ -57,7 +57,7 @@ def lexer(plain_code):
             tok = ""
 
         elif set_color:
-            if tok in "1234567890abcdefABCDEF":
+            if tok in "1234567890abcdefABCDEF#":
                 temp_color += char
             else:
                 tokens = ["Error!"]
@@ -103,7 +103,7 @@ def lexer(plain_code):
         elif tok == "\n":
             tok = ""
         else:
-            if tok not in "move.updownrightleft(0987654321)lastanimationcolour[]":
+            if tok not in "move.updownrightleft(0987654321)lastanimationcolour[]#":
                 tokens = ["Error!"]
                 return tokens
 
@@ -162,22 +162,12 @@ def parser(toks):
                             raise ValueError('Not complete code.')
                         command_list.append(number)
                         tree += "\t\t  animation\n\t\t\t\t    {}\n".format(number)
+                    if toks[i+8] == "DOT":
+                        raise ValueError('Not complete code.')
             i += 2
             # print(command_list)
             final_code.append(build_command(command_list))
             command_list = []
-
-        elif i > 2 and i + 4 < len(toks) - 1:
-            if toks[i] + " " + toks[i + 1] + " " + toks[i + 2][0:4] == "COLOR OPEN_SQ_BRACKET CODE" and toks[i-1] != "DOT":
-                if i + 4 < len(toks) - 1:
-                    if toks[i + 4] == "DOT":
-                        raise ValueError('Not complete code.')
-                color = toks[i + 2][5:]
-                command_list.append(color)
-                final_code.append(build_command(command_list))
-                command_list = []
-                tree += "color\n\t" + color + "\n"
-                i += 3
 
         elif i + 3 < len(toks) - 1:
             if toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] == "LAST DOT MOVE DOT":
@@ -220,21 +210,39 @@ def parser(toks):
                                 raise ValueError('Not complete code.')
                             command_list.append(number)
                             tree_last += "\t\t\t  animation\n\t\t\t\t\t    {}\n".format(number)
+                    try:
+                        if toks[i+10] == "DOT":
+                            raise ValueError('Not complete code.')
+                    except IndexError:
+                        pass
                 i += 4
 
                 last_commands.append(build_command(command_list))
                 command_list = []
 
-            elif toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][0:4] == "LAST DOT COLOR OPEN_SQ_BRACKET CODE":
+        if i + 2 < len(toks) - 1:
+            if toks[i] + " " + toks[i + 1] + " " + toks[i + 2][0:4] == "COLOR OPEN_SQ_BRACKET CODE":
+                if i + 4 < len(toks) - 1:
+                    if toks[i + 4] == "DOT":
+                        raise ValueError('Not complete code.')
+                color = toks[i + 2][6:]
+                command_list.append(color)
+                final_code.append(build_command(command_list))
+                command_list = []
+                tree += "color\n\t" + color + "\n"
+                i += 3
+
+        if i + 6 < len(toks) - 1:
+            if toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][0:4] == "LAST DOT COLOR OPEN_SQ_BRACKET CODE":
                 if i + 6 < len(toks) - 1:
                     if toks[i + 6] == "DOT":
                         raise ValueError('Not complete code.')
-                color = toks[i + 4][5:]
+                color = toks[i + 4][6:]
                 command_list.append(color)
                 last_commands.append(build_command(command_list))
                 command_list = []
                 tree_last += "last\n\tcolor\n\t\t" + color + "\n"
-                i += 4
+                i += 5
 
         if toks[len(toks) - 1] == "DOT" or toks[len(toks) - 1] == "ANIMATION":
             raise ValueError('Not complete code.')
@@ -309,12 +317,12 @@ def run_test(input_code):
     return data
 
 
-code = """last.color[ff0000]
-color[0000ff]
+code = """last.color[#ff0000]
+color[#0000ff]
 move.up(2)
-color[00ff00]
+color[#00ff00]
 move.right(4).animation(2)
 last.move.up(2).animation(3)
 """
 
-run_test(code)
+# run_test(code)

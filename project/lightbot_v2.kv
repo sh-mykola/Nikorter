@@ -4,11 +4,26 @@
     code: code
     console: console
     robot: robot
+    path: path
 
     BoxLayout:
         size: root.width, root.height
         BoxLayout:
             orientation: "vertical"
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+                Button:
+                    size_hint_x: None
+                    width: 150
+                    text: "Open file"
+                    on_press: root.open_from_file()
+                TextInput:
+                    id: path
+                    text: "/Volumes/Niko/Python/Nikorter/examples/example1.txt"
+                    multiline: False
+
 
             CodeInput:
                 id: code
@@ -22,6 +37,9 @@
                 Button:
                     text: "Interpret"
                     on_press: root.start_interpret()
+                Button:
+                    text: "Randomize"
+                    on_press: root.randomize_position()
                 Button:
                     text: "Reset"
                     on_press: root.reset_position()

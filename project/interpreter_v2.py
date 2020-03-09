@@ -15,6 +15,9 @@ import interpreter_code_v2
 import interpreter_code
 from importlib import reload
 import logging
+import random
+import webcolors
+import numpy
 #Create and configure logger
 LOG_FORMAT = "%(levelname)s %(asctime)s %(message)s"
 logging.basicConfig(filename="/Volumes/Niko/Python/Nikorter/project/console.log",
@@ -70,12 +73,38 @@ class MyProgram(Widget):
         self.console.text = data[1]
 
     def reset_position(self):
-        self.console.text = "Reseted"
+        self.console.text = "Reseted!"
         self.robot.rgb = (1, 1, 1)
         Animation.cancel_all(self.robot)
         anim = Animation(x = 1000, y = 0, duration=0.4, t='in_out_cubic')
         anim.start(self.robot)
         #self.robot.pos = [1000, 0]
+
+    def randomize_position(self):
+        self.console.text = ""
+        x = [1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800]
+        y = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100]
+
+        rand_x = random.choice(x)
+        rand_y = random.choice(y)
+        rand_color = (random.random(), random.random(), random.random())
+        rand_color_hex = webcolors.rgb_to_hex((int(round(rand_color[0]*255, 3)), int(round(rand_color[1]*255, 3)), int(round(rand_color[2]*255, 3))))
+
+        self.robot.rgb = rand_color
+
+        Animation.cancel_all(self.robot)
+        anim = Animation(x=rand_x, y=rand_y, duration=0.4, t='in_out_cubic')
+        anim.start(self.robot)
+        self.console.text = "Randomized!\nPosition: [{}, {}]\nColor: {}".format(rand_x, rand_y, rand_color_hex)
+
+    def open_from_file(self):
+        self.console.text = "Loaded!"
+        path = self.path.text
+        raw_code = ""
+        with open(path, 'r') as file:
+            data = file.read()
+        self.code.text = data
+
 
 
     # TODO Make special location for robot
