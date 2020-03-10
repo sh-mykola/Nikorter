@@ -5,10 +5,6 @@ def timer():
 	time += 0.3
 	return time
 def move_algorithm(self):
-	change_color(self, (0.0, 0.0, 1.0), timer())
 	move_up(self, 2, timer(), 'in_out_cubic') 
-	change_color(self, (0.0, 1.0, 0.0), timer())
-	move_right(self, 4, timer(), 'in_out_bounce') 
-	change_color(self, (1.0, 0.0, 0.0), timer())
-	move_up(self, 2, timer(), 'in_out_circ') 
+	move_up(self, 2, timer(), 'in_out_cubic') 
 	pass

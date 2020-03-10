@@ -18,8 +18,10 @@ def lexer(plain_code):
     tok = ""
     temp_number = ""
     temp_color = ""
+    temp_times = ""
     open_br = False
     set_color = False
+    loop = False
 
     global tokens
 
@@ -30,6 +32,29 @@ def lexer(plain_code):
         tok += char
         if tok == " ":
             tok = ""
+        elif tok.lower() == "loop":
+            tokens.append("LOOP")
+            tok = ""
+
+        elif tok == "{":
+            tokens.append("OPEN_LOOP_BRACKET")
+            loop = True
+            tok = ""
+        elif tok == "}":
+            tokens.append("TIMES:" + temp_times)
+            tokens.append("CLOSE_LOOP_BRACKET")
+            loop = False
+            temp_times = ""
+            tok = ""
+
+        elif loop:
+            if tok in "1234567890":
+                temp_times += char
+            else:
+                tokens = ["Error!"]
+                return tokens
+            tok = ""
+
         elif tok.lower() == "move":
             tokens.append("MOVE")
             tok = ""
@@ -42,6 +67,7 @@ def lexer(plain_code):
         elif tok.lower() == "color" or tok.lower() == "colour":
             tokens.append("COLOR")
             tok = ""
+
         elif tok == "[":
             tokens.append("OPEN_SQ_BRACKET")
             set_color = True
@@ -103,7 +129,7 @@ def lexer(plain_code):
         elif tok == "\n":
             tok = ""
         else:
-            if tok not in "move.updownrightleft(0987654321)lastanimationcolour[]#":
+            if tok not in "move.updownrightleft(0987654321)lastanimationcolour[]#{}loop":
                 tokens = ["Error!"]
                 return tokens
 
@@ -122,6 +148,12 @@ def parser(toks):
     global final_code
     global last_commands
     command_list = []
+
+    for a in range(len(toks)-1):
+        if a < len(toks)-1:
+            if toks[a] == toks[a+1]:
+                raise ValueError('Repeated code.')
+
     while i < len(toks) - 1:
         if toks[i] + " " + toks[i + 1] == "MOVE DOT":
             command_list.append("move")
@@ -162,8 +194,11 @@ def parser(toks):
                             raise ValueError('Not complete code.')
                         command_list.append(number)
                         tree += "\t\t  animation\n\t\t\t\t    {}\n".format(number)
-                    if toks[i+8] == "DOT":
-                        raise ValueError('Not complete code.')
+                    try:
+                        if toks[i+8] == "DOT":
+                            raise ValueError('Not complete code.')
+                    except IndexError:
+                        pass
             i += 2
             # print(command_list)
             final_code.append(build_command(command_list))
@@ -219,6 +254,20 @@ def parser(toks):
 
                 last_commands.append(build_command(command_list))
                 command_list = []
+        if i + 3 < len(toks) - 1:
+            if toks[i] + " " + toks[i + 1] + " " + toks[i+2][0:5] == "LOOP OPEN_LOOP_BRACKET TIMES":
+                number = toks[i + 2][6:]
+                if number == "":
+                    raise ValueError('Not complete code.')
+                command_list.append("loop")
+                command_list.append(number)
+
+                try:
+                    if toks[i+5] == "LAST":
+                        raise ValueError('Not complete code.')
+                except IndexError:
+                    pass
+                i += 3
 
         if i + 2 < len(toks) - 1:
             if toks[i] + " " + toks[i + 1] + " " + toks[i + 2][0:4] == "COLOR OPEN_SQ_BRACKET CODE":
@@ -278,6 +327,13 @@ def build_command(element_list):
     if element_list[0] == "move":
         string += element_list[0] + "_" + element_list[1] + "(self, " + element_list[2] + ", timer(), '" \
                   + animation + "') "
+
+    elif element_list[0] == "loop":
+        print()
+        string += "for i in range("+ element_list[1] +"):"
+        string += "\n\t\t" + element_list[2] + "_" + element_list[3] + "(self, " + element_list[4] + ", timer(), '" \
+                  + animation + "') "
+
     # change_color(self, color)
     else:
         color_code = "#" + element_list[0]
@@ -313,7 +369,7 @@ def run_test(input_code):
 
     data = [final_code + last_commands, tree + tree_last, errors]
     print(data)
-    print(last_commands)
+
     return data
 
 

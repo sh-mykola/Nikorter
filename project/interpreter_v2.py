@@ -125,6 +125,7 @@ class MyProgram(Widget):
     # TODO Add different animations to own code by kivy animator
     # TODO Publish on GitHub in ideal version for portfolio
     # TODO Animation change +  color change as parametr in kiv  by global variable
+    # TODO Double symbols problem
 
 
 class LightBot_v2App(App):
