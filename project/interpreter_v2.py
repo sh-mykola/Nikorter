@@ -4,7 +4,6 @@ from kivy.properties import ObjectProperty
 from kivy.clock import Clock
 from functools import partial
 from kivy.animation import Animation
-
 from kivy.config import Config
 
 Config.set("graphics", "resizable", "0")
@@ -18,7 +17,7 @@ import logging
 import random
 import webcolors
 import numpy
-#Create and configure logger
+"""#Create and configure logger
 LOG_FORMAT = "%(levelname)s %(asctime)s %(message)s"
 logging.basicConfig(filename="/Volumes/Niko/Python/Nikorter/project/console.log",
                     level = logging.DEBUG,
@@ -27,7 +26,7 @@ logging.basicConfig(filename="/Volumes/Niko/Python/Nikorter/project/console.log"
 logger = logging.getLogger()
 logger.info("Initialization")
 
-console_log = "CONSOLE LOG:\n"
+console_log = "CONSOLE LOG:\n" """
 
 def create_code(code_plain):
     f = open("interpreter_code_v2.py", "w+")

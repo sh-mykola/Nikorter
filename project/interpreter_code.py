@@ -7,7 +7,7 @@ tokens = []
 
 final_code = []
 last_commands = []
-tree = "PROGRAM TREE:\n"
+tree = "PROGRAM TREE:\nroot\n"
 tree_last = ""
 
 grammars = ["mov", "mo", "m", "loo", "lo", "l", "las", "la", "animatio", "animati", "animat", "anima", "anim", "ani",
@@ -177,27 +177,27 @@ def parser(toks):
     while i < len(toks) - 1:
         if toks[i] + " " + toks[i + 1] == "MOVE DOT":
             command_list.append("move")
-            tree += "move\n"
+            tree += "\tmove\n"
             # print("FOUND ENTRY")
             if toks[i + 2] == "UP":
                 # print("FOUND UP")
                 command_list.append("up")
-                tree += "\tup\n"
+                tree += "\t\tup\n"
                 i += 1
             elif toks[i + 2] == "DOWN":
                 # print("FOUND DOWN")
                 command_list.append("down")
-                tree += "\tdown\n"
+                tree += "\t\tdown\n"
                 i += 1
             elif toks[i + 2] == "RIGHT":
                 # print("FOUND RIGHT")
                 command_list.append("right")
-                tree += "\tright\n"
+                tree += "\t\tright\n"
                 i += 1
             elif toks[i + 2] == "LEFT":
                 # print("FOUND LEFT")
                 command_list.append("left")
-                tree += "\tleft\n"
+                tree += "\t\tleft\n"
                 i += 1
             if toks[i + 3][0:7] == "NUMBER:":
                 number = toks[i + 3][7:]
@@ -206,7 +206,7 @@ def parser(toks):
                 command_list.append(number)
                 if looping:
                     number = str(int(number) * loop_times) + " with loop"
-                tree += "\t\t{}\n".format(number)
+                tree += "\t\t\t{}\n".format(number)
                 i += 2
             if i + 6 < len(toks) - 1:
                 if toks[i + 3] + " " + toks[i + 4] == "DOT ANIMATION":
@@ -216,9 +216,9 @@ def parser(toks):
                             raise ValueError('Not complete code.')
                         command_list.append(number)
                         if looping:
-                            tree += "\t\t\t\t  animation\n\t\t\t\t\t\t    {}\n".format(number)
+                            tree += "\t\t\t\t\t  animation\n\t\t\t\t\t\t\t    {}\n".format(number)
                         else:
-                            tree += "\t\t  animation\n\t\t\t\t    {}\n".format(number)
+                            tree += "\t\t\t  animation\n\t\t\t\t\t    {}\n".format(number)
                     try:
                         if toks[i + 8] == "DOT":
                             raise ValueError('Not complete code.')
@@ -233,28 +233,28 @@ def parser(toks):
         elif i + 3 < len(toks) - 1:
             if toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] == "LAST DOT MOVE DOT":
                 command_list.append("move")
-                tree_last += "last\n"
-                tree_last += "\tmove\n"
+                tree_last += "\tlast\n"
+                tree_last += "\t\tmove\n"
                 # print("FOUND ENTRY")
                 if toks[i + 4] == "UP":
                     # print("FOUND UP")
                     command_list.append("up")
-                    tree_last += "\t\tup\n"
+                    tree_last += "\t\t\tup\n"
                     i += 1
                 elif toks[i + 4] == "DOWN":
                     # print("FOUND DOWN")
                     command_list.append("down")
-                    tree_last += "\t\tdown\n"
+                    tree_last += "\t\t\tdown\n"
                     i += 1
                 elif toks[i + 4] == "RIGHT":
                     # print("FOUND RIGHT")
                     command_list.append("right")
-                    tree_last += "\t\tright\n"
+                    tree_last += "\t\t\tright\n"
                     i += 1
                 elif toks[i + 4] == "LEFT":
                     # print("FOUND LEFT")
                     command_list.append("left")
-                    tree_last += "\t\tleft\n"
+                    tree_last += "\t\t\tleft\n"
                     i += 1
                 if toks[i + 5][0:7] == "NUMBER:":
                     number = toks[i + 5][7:]
@@ -263,7 +263,7 @@ def parser(toks):
                     command_list.append(number)
                     if looping:
                         number = str(int(number) * loop_times) + " with loop"
-                    tree_last += "\t\t\t{}\n".format(number)
+                    tree_last += "\t\t\t\t{}\n".format(number)
                     i += 2
                 if i + 8 < len(toks) - 1:
                     if toks[i + 5] + " " + toks[i + 6] == "DOT ANIMATION":
@@ -273,9 +273,9 @@ def parser(toks):
                                 raise ValueError('Not complete code.')
                             command_list.append(number)
                             if looping:
-                                tree_last += "\t\t\t\t\t  animation\n\t\t\t\t\t\t\t    {}\n".format(number)
+                                tree_last += "\t\t\t\t\t\t  animation\n\t\t\t\t\t\t\t\t    {}\n".format(number)
                             else:
-                                tree_last += "\t\t\t  animation\n\t\t\t\t\t    {}\n".format(number)
+                                tree_last += "\t\t\t\t  animation\n\t\t\t\t\t\t    {}\n".format(number)
                     try:
                         if toks[i + 10] == "DOT":
                             raise ValueError('Not complete code.')
@@ -327,7 +327,7 @@ def parser(toks):
                 color_check = toks[i + 4][6:]
                 color_set = toks[i + 10][6:]
 
-                tree += "if\n\tcolor\n\t\t #" + color_check + "\n\t\t\t    than\n\t\t\t\t    #" + color_set + "\n"
+                tree += "\tif\n\t\tcolor\n\t\t\t #" + color_check + "\n\t\t\t\t    than\n\t\t\t\t\t    #" + color_set + "\n"
 
                 command_list.append("if")
                 command_list.append(color_check)
@@ -349,7 +349,7 @@ def parser(toks):
                 command_list.append(color)
                 last_commands.append(build_command(command_list))
                 command_list = []
-                tree_last += "last\n\tcolor\n\t\t#" + color + "\n"
+                tree_last += "\tlast\n\t\tcolor\n\t\t\t#" + color + "\n"
                 i += 5
 
         if i + 2 < len(toks) - 1:
@@ -361,7 +361,7 @@ def parser(toks):
                 command_list.append(color)
                 final_code.append(build_command(command_list))
                 command_list = []
-                tree += "color\n\t#" + color + "\n"
+                tree += "\tcolor\n\t\t#" + color + "\n"
                 i += 3
 
 
