@@ -1,0 +1,8 @@
+color[#11ff33]
+loop{2}.move.right(2).animation(8)
+last.move.right(2)
+last.color[#007733]
+loop{3}.move.up(3).animation(1)
+last.move.left(4)
+color[#ff0033]
+if<color[#ff0033]>.color[#ffffff]
