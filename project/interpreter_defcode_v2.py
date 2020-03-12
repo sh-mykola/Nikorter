@@ -1,6 +1,5 @@
 from kivy.animation import Animation
-import time
-durations = 0.4
+durations = 0.3
 
 def move_up(times, animation, position):
     #check = self.robot.pos[1] + 100 * times
@@ -49,14 +48,6 @@ def move_left(times, animation, position):
 def change_color(color, position):
     animator = Animation(rgb=color, duration=durations)
     return [animator, position]
-
-
-def get_color(self):
-    time.sleep(durations)
-    color = self.robot.rgb
-    color_norm = (color[0], color[1], color[2])
-    print(color_norm)
-    return color_norm
 
 
 

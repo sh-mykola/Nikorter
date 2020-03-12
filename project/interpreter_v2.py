@@ -32,12 +32,13 @@ console_log = "CONSOLE LOG:\n" """
 
 def create_code(code_plain):
     f = open("interpreter_code_v2.py", "w+")
-    f.write("from interpreter_defcode_v2 import move_up, move_down, move_right, move_left, change_color, get_color")
+    f.write("from interpreter_defcode_v2 import move_up, move_down, move_right, move_left, change_color")
     f.write("\nfrom kivy.animation import Animation\n")
     f.write("\ndef move_algorithm(self):\n")
 
     f.write("\tanim = []\n")
     f.write("\tposition = list(self.robot.pos)\n")
+    f.write("\tc_r = self.robot.rgb\n\tcolor = (c_r[0], c_r[1], c_r[2])\n")
     for i in code_plain:
         f.write("\t{}\n".format(i))
         if i[0:4] == "elif" or i[0:2] == "if":

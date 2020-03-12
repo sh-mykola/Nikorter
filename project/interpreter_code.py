@@ -353,6 +353,13 @@ def parser(toks):
 
         if i + 3 < main_range:
             if toks[i] + " " + toks[i + 1] + " " + toks[i + 2][0:5] == "LOOP OPEN_LOOP_BRACKET TIMES":
+
+                try:
+                    if toks[i + 4] != "DOT":
+                        raise ValueError('Not complete code.')
+                except IndexError:
+                    raise ValueError('Not complete code.')
+
                 if looping:
                     raise ValueError('Not complete code.')
                 try:
@@ -562,7 +569,9 @@ def build_command(element_list):
         normalized_color = tuple(numpy.array(webcolors.hex_to_rgb(color_code_check)) / 255.0)
         color = tuple(numpy.array(webcolors.hex_to_rgb(color_to_change)) / 255.0)
 
-        string += "{} get_color(self) == {}:\n\t\tanim.append(change_color({}, position))".format(element_list[0], normalized_color, color)
+        string += "{} color == {}:\n\t\tanim.append(change_color({}, position))".format(element_list[0],
+                                                                                        normalized_color, color)
+        string += "\n\t\tcolor = {}".format(color)
 
     # change_color(self, color)
     elif element_list[0] == "else":
@@ -570,11 +579,13 @@ def build_command(element_list):
         color = tuple(numpy.array(webcolors.hex_to_rgb(color_to_change)) / 255.0)
 
         string += "else:\n\t\tanim.append(change_color({}, position))".format(color)
+        string += "\n\t\tcolor = {}".format(color)
 
     else:
         color_code = "#" + element_list[0]
         color = tuple(numpy.array(webcolors.hex_to_rgb(color_code)) / 255.0)
         string += "anim.append(change_color({}, position))".format(color)
+        string += "\n\tcolor = {}".format(color)
 
     return string
 
@@ -591,35 +602,38 @@ def run(input_code):
         logger.error("Something wrong!")
         errors = True
 
-    data = [final_code + last_commands, errors]
-    print(data)
-    print("-" * 50 + "\n")
-
     # creating tree
     f = open("tree_text.txt", "w+")
     f.write(tree + tree_last)
     f.close()
 
-    f2 = open("tree_view.txt", "w+")
-    with open('tree_text.txt', 'r') as f:
-        lines = f.readlines()[1:]
-        root = Node(lines[0].split(" ")[0])
-        nodes = {}
-        nodes[root.name] = root
-
-        for line in lines:
-            line = line.split(" ")
-            name = "".join(line[1:]).strip()
-            nodes[name] = Node(name, parent=nodes[line[0]])
-
-        for pre, _, node in RenderTree(root):
-            string = "%s%s" % (pre, node.name)
-            print(string)
-            f2.write(string + "\n")
-
-    f2.close()
-
     print("\n" + "-" * 50)
+    try:
+        f2 = open("tree_view.txt", "w+")
+        with open('tree_text.txt', 'r') as f:
+            lines = f.readlines()[1:]
+            root = Node(lines[0].split(" ")[0])
+            nodes = {}
+            nodes[root.name] = root
+
+            for line in lines:
+                line = line.split(" ")
+                name = "".join(line[1:]).strip()
+                nodes[name] = Node(name, parent=nodes[line[0]])
+
+            for pre, _, node in RenderTree(root):
+                string = "%s%s" % (pre, node.name)
+                print(string)
+                f2.write(string + "\n")
+
+        f2.close()
+    except BaseException as e:
+        logger.error("Something wrong in tree than code is bad!")
+        errors = True
+
+    data = [final_code + last_commands, errors]
+    print(data)
+    print("-" * 50 + "\n")
 
     return data
 
