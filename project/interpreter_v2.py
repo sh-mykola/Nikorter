@@ -17,6 +17,7 @@ import logging
 import random
 import webcolors
 import numpy
+
 """#Create and configure logger
 LOG_FORMAT = "%(levelname)s %(asctime)s %(message)s"
 logging.basicConfig(filename="/Volumes/Niko/Python/Nikorter/project/console.log",
@@ -28,10 +29,11 @@ logger.info("Initialization")
 
 console_log = "CONSOLE LOG:\n" """
 
+
 def create_code(code_plain):
     f = open("interpreter_code_v2.py", "w+")
     f.write("from interpreter_defcode_v2 import move_up, move_down, move_right, move_left, change_color, get_color")
-    #f.write("\nimport time as tm\n")
+    # f.write("\nimport time as tm\n")
     f.write("\ntime = 0\ndef timer():\n\tglobal time\n\ttime += 0.3\n\treturn time")
     f.write("\ndef move_algorithm(self):\n")
     for i in code_plain:
@@ -39,13 +41,18 @@ def create_code(code_plain):
     f.write("\tpass\n")
     f.close()
 
+
 time = 0
+
+
 def timer():
     global time
     time += 0.3
     return time
 
+
 create_code("")
+
 
 class MyProgram(Widget):
     code = ObjectProperty(None)
@@ -53,32 +60,32 @@ class MyProgram(Widget):
     robot = ObjectProperty(None)
 
     def start_interpret(self):
-        #getting code
+        # getting code
         code = self.code.text
         if code == "":
             return
         reload(interpreter_code)
         data = interpreter_code.run(code)
-        if len(data[0]) == 0 or data[0][0] == "Error!" or data[2] == True:
+        if len(data[0]) == 0 or data[0][0] == "Error!" or data[1] == True:
             self.console.text = "Error!"
             return
 
         create_code(data[0])
-        #starting code
+        # starting code
         # move_up(self, 2, timer())
         reload(interpreter_code_v2)
         interpreter_code_v2.move_algorithm(self)
-        #Clock.schedule_once(partial(move_algorithm, self), 2)
-        #setting console
-        self.console.text = data[1]
+        # Clock.schedule_once(partial(move_algorithm, self), 2)
+        # setting console
+        self.console.text = "For tree check console or tree_view.txt"  # data[1]
 
     def reset_position(self):
         self.console.text = "Reseted!"
         self.robot.rgb = (0, 0.5, 1)
         Animation.cancel_all(self.robot)
-        anim = Animation(x = 1000, y = 0, duration=0.4, t='in_out_cubic')
+        anim = Animation(x=1000, y=0, duration=0.4, t='in_out_cubic')
         anim.start(self.robot)
-        #self.robot.pos = [1000, 0]
+        # self.robot.pos = [1000, 0]
 
     def randomize_position(self):
         self.console.text = ""
@@ -88,7 +95,8 @@ class MyProgram(Widget):
         rand_x = random.choice(x)
         rand_y = random.choice(y)
         rand_color = (random.random(), random.random(), random.random())
-        rand_color_hex = webcolors.rgb_to_hex((int(round(rand_color[0]*255, 3)), int(round(rand_color[1]*255, 3)), int(round(rand_color[2]*255, 3))))
+        rand_color_hex = webcolors.rgb_to_hex((int(round(rand_color[0] * 255, 3)), int(round(rand_color[1] * 255, 3)),
+                                               int(round(rand_color[2] * 255, 3))))
 
         self.robot.rgb = rand_color
 
@@ -105,14 +113,11 @@ class MyProgram(Widget):
             data = file.read()
         self.code.text = data
 
-
-
     # TODO Make special location for robot
     """def place_robot(self):
         self.robot.pos += [100, 100]
 
     place_robot()"""
-
 
     """def move_robot(self):
         pos = self.robot.pos

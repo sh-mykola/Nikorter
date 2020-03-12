@@ -30,6 +30,7 @@ def lexer(plain_code):
     global tokens
 
     plain_code = list(plain_code)
+    print("-" * 50)
     print(plain_code)
 
     for char in plain_code:
@@ -41,13 +42,19 @@ def lexer(plain_code):
             tokens.append("IF")
             tok = ""
 
+        elif tok.lower() == "elif":
+            tokens.append("ELIF")
+            tok = ""
+
+        elif tok.lower() == "else":
+            tokens.append("ELSE")
+            tok = ""
+
         elif tok == "<":
             tokens.append("OPEN_IF_BRACKET")
-            # loop = True
             tok = ""
         elif tok == ">":
             tokens.append("CLOSE_IF_BRACKET")
-            # loop = False
             tok = ""
 
         elif tok.lower() == "loop":
@@ -145,8 +152,9 @@ def lexer(plain_code):
             tok = ""
 
         elif tok == "\n":
+            #tokens.append("NL") #change if elif else in parser than O_o
             tok = ""
-        elif tok not in "move.updownrightleft(0987654321)lastanimationcolour[]#{}loopif<>":
+        elif tok not in "move.updownrightleft(0987654321)lastanimationcolour[]#{}loopif<>elifelse":
             tokens = ["Error!"]
             return tokens
 
@@ -155,31 +163,41 @@ def lexer(plain_code):
 
 
 def parser(toks):
-    if toks[0] == "Error!":
-        print(toks[0])
-        return
+    if toks[0] == "Error!" and len(toks) != 0:
+        raise ValueError("Something bad in parser!")
+    elif len(toks) == 1:
+        raise ValueError("One token!")
 
-    i = 0
     global tree
     global tree_last
     global final_code
     global last_commands
+
     command_list = []
 
     looping = False
+    last_include = False
+
+    current_statement = ""
+
+    main_range = len(toks) - 1
     loop_times = 0
-
     tree_id = 1
+    statement_id = 1
+    i = 0
 
-
-
-    for a in range(len(toks) - 1):
-        if a < len(toks) - 1:
+    for a in range(main_range):
+        if a < main_range:
             if toks[a] == toks[a + 1]:
-                raise ValueError('Repeated code.')
+                raise ValueError('Repeated code!')
 
-    while i < len(toks) - 1:
+    while i < main_range:
         if toks[i] + " " + toks[i + 1] == "MOVE DOT":
+            try:
+                if toks[i+3] + " " + toks[i + 4][0:7] + " " + toks[i + 5] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
+                    raise ValueError("Bad code")
+            except IndexError:
+                raise ValueError("Bad code")
             command_list.append("move")
             tree += "\nroot move.{}".format(tree_id)
             # print("FOUND ENTRY")
@@ -188,10 +206,7 @@ def parser(toks):
             if toks[i + 2] == "UP":
                 # print("FOUND UP")
                 command_list.append("up")
-                if looping:
-                    tree += "loop.{} move.{}\nmove.{} up".format(tree_id, tree_id, tree_id)
-                else:
-                    tree += "\nmove.{} up".format(tree_id)
+                tree += "\nmove.{} up".format(tree_id)
                 current_dir = "up"
                 i += 1
             elif toks[i + 2] == "DOWN":
@@ -212,6 +227,9 @@ def parser(toks):
                 tree += "\nmove.{} left".format(tree_id)
                 current_dir = "left"
                 i += 1
+            else:
+                raise ValueError("Bad code!")
+
             if toks[i + 3][0:7] == "NUMBER:":
                 number = toks[i + 3][7:]
                 current_num = number
@@ -224,8 +242,16 @@ def parser(toks):
 
                 tree += "\n{} {}".format(current_dir, current_num)
                 i += 2
-            if i + 6 < len(toks) - 1:
+
+            if i + 6 < main_range:
                 if toks[i + 3] + " " + toks[i + 4] == "DOT ANIMATION":
+
+                    try:
+                        if toks[i + 5] + " " + toks[i + 6][0:7] + " " + toks[i + 7] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
+                            raise ValueError("Bad code")
+                    except IndexError:
+                        raise ValueError("Bad code")
+
                     if toks[i + 6][0:7] == "NUMBER:":
                         number = toks[i + 6][7:]
                         if number == "":
@@ -245,9 +271,15 @@ def parser(toks):
             looping = False
             tree_id += 1
 
-        elif i + 3 < len(toks) - 1:
+        elif i + 3 < main_range:
             if toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] == "LAST DOT MOVE DOT":
+                try:
+                    if toks[i + 5] + " " + toks[i + 6][0:7] + " " + toks[i + 7] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
+                        raise ValueError("Bad code")
+                except IndexError:
+                    raise ValueError("Bad code")
                 command_list.append("move")
+                last_include = True
                 tree_last += "\nlast move.{}".format(tree_id)
                 # print("FOUND ENTRY")
                 current_dir = ""
@@ -276,6 +308,9 @@ def parser(toks):
                     tree_last += "\nmove.{} left".format(tree_id)
                     current_dir = "left"
                     i += 1
+                else:
+                    raise ValueError("Bad code!")
+
                 if toks[i + 5][0:7] == "NUMBER:":
                     number = toks[i + 5][7:]
                     current_num = number
@@ -287,8 +322,15 @@ def parser(toks):
                         current_num = number
                     tree_last += "\n{} {}".format(current_dir, current_num)
                     i += 2
-                if i + 8 < len(toks) - 1:
+                if i + 8 < main_range:
                     if toks[i + 5] + " " + toks[i + 6] == "DOT ANIMATION":
+
+                        try:
+                            if toks[i + 7] + " " + toks[i + 8][0:7] + " " + toks[i + 9] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
+                                raise ValueError("Bad code")
+                        except IndexError:
+                            raise ValueError("Bad code")
+
                         if toks[i + 8][0:7] == "NUMBER:":
                             number = toks[i + 8][7:]
                             if number == "":
@@ -307,7 +349,7 @@ def parser(toks):
                 looping = False
                 tree_id += 1
 
-        if i + 3 < len(toks) - 1:
+        if i + 3 < main_range:
             if toks[i] + " " + toks[i + 1] + " " + toks[i + 2][0:5] == "LOOP OPEN_LOOP_BRACKET TIMES":
                 if looping:
                     raise ValueError('Not complete code.')
@@ -316,6 +358,13 @@ def parser(toks):
                         raise ValueError('Not complete code.')
                 except IndexError:
                     pass
+
+                try:
+                    if toks[i + 3] + " " + toks[i + 4] + " " + toks[i + 5] + " " + toks[i + 6] != "CLOSE_LOOP_BRACKET DOT MOVE DOT":
+                        raise ValueError("Bad code")
+                except IndexError:
+                    raise ValueError("Bad code")
+
                 number = toks[i + 2][6:]
                 if number == "":
                     raise ValueError('Not complete code.')
@@ -332,7 +381,7 @@ def parser(toks):
                 looping = True
                 loop_times = int(number)
 
-        if i + 10 < len(toks) - 1:
+        if i + 10 < main_range:
             if toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][
                                                                                            0:4] == "IF OPEN_IF_BRACKET COLOR OPEN_SQ_BRACKET CODE":
                 if toks[i + 7] + " " + toks[i + 8] + " " + toks[i + 9] + " " + toks[i + 10][
@@ -347,7 +396,13 @@ def parser(toks):
                 color_check = toks[i + 4][6:]
                 color_set = toks[i + 10][6:]
 
-                tree += "\tif\n\t\tcolor\n\t\t\t #" + color_check + "\n\t\t\t\t    than\n\t\t\t\t\t    #" + color_set + "\n"
+                current_statement = "statement.{}".format(statement_id)
+                statement_id += 1
+
+                tree += "\nroot {}\n{} if\nif color".format(current_statement, current_statement)
+                tree += "\ncolor #{}\n#{} than\nthan #{}".format(color_check, color_check, color_set)
+
+                #tree += "\tif\n\t\tcolor\n\t\t\t #" + color_check + "\n\t\t\t\t    than\n\t\t\t\t\t    #" + color_set + "\n"
 
                 command_list.append("if")
                 command_list.append(color_check)
@@ -356,8 +411,72 @@ def parser(toks):
                 command_list = []
 
                 i += 10
+            elif toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][
+                                                                                           0:4] == "ELIF OPEN_IF_BRACKET COLOR OPEN_SQ_BRACKET CODE":
+                if toks[i + 7] + " " + toks[i + 8] + " " + toks[i + 9] + " " + toks[i + 10][
+                                                                               0:4] != "DOT COLOR OPEN_SQ_BRACKET CODE":
+                    raise ValueError('Not complete code.')
 
-        if i + 4 < len(toks) - 1:
+                try:
+                    if toks[i - 12] + " " + toks[i-11] != "ELIF OPEN_IF_BRACKET":
+                        if toks[i - 12] + " " + toks[i - 11] != "IF OPEN_IF_BRACKET":
+                            raise ValueError('Missing IF or ELIF.')
+                except IndexError:
+                    raise ValueError('Missing IF.')
+
+                try:
+                    if toks[i - 2] == "LAST":
+                        raise ValueError('Not complete code.')
+                except IndexError:
+                    pass
+
+                color_check = toks[i + 4][6:]
+                color_set = toks[i + 10][6:]
+
+                tree += "\n{} elif\nelif color".format(current_statement)
+                tree += "\ncolor #{}\n#{} than\nthan #{}".format(color_check, color_check, color_set)
+
+                # tree += "\tif\n\t\tcolor\n\t\t\t #" + color_check + "\n\t\t\t\t    than\n\t\t\t\t\t    #" + color_set + "\n"
+
+                command_list.append("elif")
+                command_list.append(color_check)
+                command_list.append(color_set)
+                final_code.append(build_command(command_list))
+                command_list = []
+
+                i += 10
+
+        if i + 4 < main_range:
+
+            if toks[i] == "ELSE":
+                if  toks[i + 1] + " "+ toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][0:4] != "DOT COLOR OPEN_SQ_BRACKET CODE":
+                    raise ValueError('Not complete code.')
+                try:
+                    if toks[i - 2] == "LAST":
+                        raise ValueError('Not complete code.')
+                except IndexError:
+                    pass
+
+                try:
+                    if toks[i - 12] + " " + toks[i-11] != "IF OPEN_IF_BRACKET":
+                        if toks[i - 12] + " " + toks[i - 11] != "ELIF OPEN_IF_BRACKET":
+                            raise ValueError('Missing IF or ELIF.')
+
+                except IndexError:
+                    raise ValueError('Missing statement data.')
+
+                color_set = toks[i + 4][6:]
+
+                tree += "\n{} else\nelse color\ncolor #{}".format(current_statement, color_set)
+
+                command_list.append("else")
+                command_list.append(color_set)
+                final_code.append(build_command(command_list))
+                command_list = []
+
+                i += 3
+
+        if i + 4 < main_range:
             if toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][
                                                                                            0:4] == "LAST DOT COLOR OPEN_SQ_BRACKET CODE":
                 try:
@@ -370,13 +489,14 @@ def parser(toks):
                 last_commands.append(build_command(command_list))
                 command_list = []
 
+                last_include = True
                 tree_last += "\nlast color.{}\ncolor.{} #{}".format(tree_id, tree_id, color)
                 i += 5
                 tree_id += 1
 
-        if i + 2 < len(toks) - 1:
+        if i + 2 < main_range:
             if toks[i] + " " + toks[i + 1] + " " + toks[i + 2][0:4] == "COLOR OPEN_SQ_BRACKET CODE":
-                if i + 4 < len(toks) - 1:
+                if i + 4 < main_range:
                     if toks[i + 4] == "DOT":
                         raise ValueError('Not complete code.')
                 color = toks[i + 2][6:]
@@ -387,10 +507,13 @@ def parser(toks):
                 i += 3
                 tree_id += 1
 
-        if toks[len(toks) - 1] == "DOT" or toks[len(toks) - 1] == "ANIMATION":
+        if toks[main_range] == "DOT" or toks[main_range] == "ANIMATION":
             raise ValueError('Not complete code.')
+
         i += 1
-    tree += "\nroot last"
+
+    if last_include:
+        tree += "\nroot last"
 
 
 def build_command(element_list):
@@ -430,11 +553,11 @@ def build_command(element_list):
 
         #	if get_color(self) != 'ffffff':
         #	    setcolor
-    elif element_list[0] == "if":
+    elif element_list[0] == "if" or element_list[0] == "elif":
         color_code_check = "#" + element_list[1]
         color_to_change = "#" + element_list[2]
         # string += "timer()"
-        string += "if get_color(self, timer()) == " + str(
+        string += "{} get_color(self, timer()) == ".format(element_list[0]) + str(
             tuple(numpy.array(webcolors.hex_to_rgb(color_code_check)) / 255.0)) + ":"
         color = tuple(numpy.array(webcolors.hex_to_rgb(color_to_change)) / 255.0)
         # string += "\n\t\ttimer()"
@@ -443,6 +566,13 @@ def build_command(element_list):
         # string += "\n\ttimer()"
 
     # change_color(self, color)
+    elif element_list[0] == "else":
+        color_to_change = "#" + element_list[1]
+        string += "else:"
+        color = tuple(numpy.array(webcolors.hex_to_rgb(color_to_change)) / 255.0)
+        # string += "\n\t\ttimer()"
+        string += "\n\t\tchange_color(self, " + str(color) + ", timer())"
+        string += "\n\t\tprint('Changed', '-'*100)"
     else:
         color_code = "#" + element_list[0]
         color = tuple(numpy.array(webcolors.hex_to_rgb(color_code)) / 255.0)
@@ -452,7 +582,7 @@ def build_command(element_list):
 
 
 def run(input_code):
-    global final_code, last_commands, tree
+    global final_code, last_commands, tree, tree_last
     errors = False
 
     toks = lexer(input_code)
@@ -463,13 +593,41 @@ def run(input_code):
         logger.error("Something wrong!")
         errors = True
 
-    data = [final_code + last_commands, tree + tree_last, errors]
+    data = [final_code + last_commands, errors]
     print(data)
+    print("-" * 50 + "\n")
+
+    # creating tree
+    f = open("tree_text.txt", "w+")
+    f.write(tree + tree_last)
+    f.close()
+
+    f2 = open("tree_view.txt", "w+")
+    with open('tree_text.txt', 'r') as f:
+        lines = f.readlines()[1:]
+        root = Node(lines[0].split(" ")[0])
+        nodes = {}
+        nodes[root.name] = root
+
+        for line in lines:
+            line = line.split(" ")
+            name = "".join(line[1:]).strip()
+            nodes[name] = Node(name, parent=nodes[line[0]])
+
+        for pre, _, node in RenderTree(root):
+            string = "%s%s" % (pre, node.name)
+            print(string)
+            f2.write(string + "\n")
+
+    f2.close()
+
+    print("\n"+"-" * 50)
+
     return data
 
 
 def run_test(input_code):
-    global final_code, last_commands, tree
+    global final_code, last_commands, tree, tree_last
     errors = False
 
     toks = lexer(input_code)
@@ -501,10 +659,17 @@ def run_test(input_code):
 
 
 
-code = """loop{2}.move.right(2).animation(2)
-last.move.up(2)
-last.move.up(2)
-color[#ffffff]
-"""
+code = """if<color[#ffffff]>.color[#ffffff]
+elif<color[#ffffff]>.color[#ffffff]
+elif<color[#ffffff]>.color[#ffffff]
+else.color[#ffffff]
+if<color[#ffffff]>.color[#ffffff]
+elif<color[#ffffff]>.color[#ffffff]
+elif<color[#ffffff]>.color[#ffffff]
+else.color[#ffffff]
+if<color[#ffffff]>.color[#ffffff]
+elif<color[#ffffff]>.color[#ffffff]
+elif<color[#ffffff]>.color[#ffffff]
+else.color[#ffffff]"""
 
 # run_test(code)
