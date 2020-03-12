@@ -33,27 +33,20 @@ console_log = "CONSOLE LOG:\n" """
 def create_code(code_plain):
     f = open("interpreter_code_v2.py", "w+")
     f.write("from interpreter_defcode_v2 import move_up, move_down, move_right, move_left, change_color, get_color")
-    f.write("\nfrom kivy.animation import Animation\n\n")
+    f.write("\nfrom kivy.animation import Animation\n")
     f.write("\ndef move_algorithm(self):\n")
 
     f.write("\tanim = []\n")
-    f.write("\tposition = self.robot.pos\n")
+    f.write("\tposition = list(self.robot.pos)\n")
     for i in code_plain:
         f.write("\t{}\n".format(i))
-        f.write("\tposition = anim[-1][1]\n")
-        f.write("\tprint('---:', position)\n")
+        if i[0:4] == "elif" or i[0:2] == "if":
+            pass
+        else:
+            f.write("\tposition = list(anim[-1][1])\n")
+        # f.write("\tprint('---:', position)\n")
 
-    """
-    \tanimator = Animation\n
-    \tfor i in anim:\n
-        \t\tanimator += i\n
-    
-    f.write("\tanimator = anim[0]\n\tfor i in range(1, len(anim)):\n\t\tanimator += anim[i]\n")
-    f.write("\tanimator.start(self.robot)\n")
-        
-    f.write("\tprint(anim)\n\tfor i in anim:\n\t\tClock.schedule_once(partial(animator, self, i), timer())\n")
-    # f.write("\tanimator.start(self.robot)\n")"""
-    f.write("\tprint(anim)\n")
+    # f.write("\tprint(anim)\n")
     f.write("\tanimator = Animation()\n\tfor i in range(len(anim)):\n\t\tanimator += anim[i][0]\n")
     f.write("\tanimator.start(self.robot)\n")
 
@@ -105,7 +98,7 @@ class MyProgram(Widget):
 
         self.robot.rgb = rand_color
 
-        Animation.cancel_all(self.robot)
+        Animation.cancel_all(self.robot, 'x')
         anim = Animation(x=rand_x, y=rand_y, duration=0.4, t='in_out_cubic')
         anim.start(self.robot)
         self.console.text = "Randomized!\nPosition: [{}, {}]\nColor: {}".format(rand_x, rand_y, rand_color_hex)

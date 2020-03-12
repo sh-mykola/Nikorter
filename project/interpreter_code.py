@@ -152,7 +152,7 @@ def lexer(plain_code):
             tok = ""
 
         elif tok == "\n":
-            #tokens.append("NL") #change if elif else in parser than O_o
+            # tokens.append("NL") #change if elif else in parser than O_o
             tok = ""
         elif tok not in "move.updownrightleft(0987654321)lastanimationcolour[]#{}loopif<>elifelse":
             tokens = ["Error!"]
@@ -194,7 +194,7 @@ def parser(toks):
     while i < main_range:
         if toks[i] + " " + toks[i + 1] == "MOVE DOT":
             try:
-                if toks[i+3] + " " + toks[i + 4][0:7] + " " + toks[i + 5] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
+                if toks[i + 3] + " " + toks[i + 4][0:7] + " " + toks[i + 5] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
                     raise ValueError("Bad code")
             except IndexError:
                 raise ValueError("Bad code")
@@ -247,7 +247,8 @@ def parser(toks):
                 if toks[i + 3] + " " + toks[i + 4] == "DOT ANIMATION":
 
                     try:
-                        if toks[i + 5] + " " + toks[i + 6][0:7] + " " + toks[i + 7] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
+                        if toks[i + 5] + " " + toks[i + 6][0:7] + " " + toks[
+                            i + 7] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
                             raise ValueError("Bad code")
                     except IndexError:
                         raise ValueError("Bad code")
@@ -326,7 +327,8 @@ def parser(toks):
                     if toks[i + 5] + " " + toks[i + 6] == "DOT ANIMATION":
 
                         try:
-                            if toks[i + 7] + " " + toks[i + 8][0:7] + " " + toks[i + 9] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
+                            if toks[i + 7] + " " + toks[i + 8][0:7] + " " + toks[
+                                i + 9] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
                                 raise ValueError("Bad code")
                         except IndexError:
                             raise ValueError("Bad code")
@@ -360,7 +362,8 @@ def parser(toks):
                     pass
 
                 try:
-                    if toks[i + 3] + " " + toks[i + 4] + " " + toks[i + 5] + " " + toks[i + 6] != "CLOSE_LOOP_BRACKET DOT MOVE DOT":
+                    if toks[i + 3] + " " + toks[i + 4] + " " + toks[i + 5] + " " + toks[
+                        i + 6] != "CLOSE_LOOP_BRACKET DOT MOVE DOT":
                         raise ValueError("Bad code")
                 except IndexError:
                     raise ValueError("Bad code")
@@ -402,7 +405,7 @@ def parser(toks):
                 tree += "\nroot {}\n{} if\nif color".format(current_statement, current_statement)
                 tree += "\ncolor #{}\n#{} than\nthan #{}".format(color_check, color_check, color_set)
 
-                #tree += "\tif\n\t\tcolor\n\t\t\t #" + color_check + "\n\t\t\t\t    than\n\t\t\t\t\t    #" + color_set + "\n"
+                # tree += "\tif\n\t\tcolor\n\t\t\t #" + color_check + "\n\t\t\t\t    than\n\t\t\t\t\t    #" + color_set + "\n"
 
                 command_list.append("if")
                 command_list.append(color_check)
@@ -412,13 +415,13 @@ def parser(toks):
 
                 i += 10
             elif toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][
-                                                                                           0:4] == "ELIF OPEN_IF_BRACKET COLOR OPEN_SQ_BRACKET CODE":
+                                                                                             0:4] == "ELIF OPEN_IF_BRACKET COLOR OPEN_SQ_BRACKET CODE":
                 if toks[i + 7] + " " + toks[i + 8] + " " + toks[i + 9] + " " + toks[i + 10][
                                                                                0:4] != "DOT COLOR OPEN_SQ_BRACKET CODE":
                     raise ValueError('Not complete code.')
 
                 try:
-                    if toks[i - 12] + " " + toks[i-11] != "ELIF OPEN_IF_BRACKET":
+                    if toks[i - 12] + " " + toks[i - 11] != "ELIF OPEN_IF_BRACKET":
                         if toks[i - 12] + " " + toks[i - 11] != "IF OPEN_IF_BRACKET":
                             raise ValueError('Missing IF or ELIF.')
                 except IndexError:
@@ -449,7 +452,8 @@ def parser(toks):
         if i + 4 < main_range:
 
             if toks[i] == "ELSE":
-                if  toks[i + 1] + " "+ toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][0:4] != "DOT COLOR OPEN_SQ_BRACKET CODE":
+                if toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][
+                                                                               0:4] != "DOT COLOR OPEN_SQ_BRACKET CODE":
                     raise ValueError('Not complete code.')
                 try:
                     if toks[i - 2] == "LAST":
@@ -458,7 +462,7 @@ def parser(toks):
                     pass
 
                 try:
-                    if toks[i - 12] + " " + toks[i-11] != "IF OPEN_IF_BRACKET":
+                    if toks[i - 12] + " " + toks[i - 11] != "IF OPEN_IF_BRACKET":
                         if toks[i - 12] + " " + toks[i - 11] != "ELIF OPEN_IF_BRACKET":
                             raise ValueError('Missing IF or ELIF.')
 
@@ -544,40 +548,33 @@ def build_command(element_list):
     # move_up(self, 2, timer())
     if element_list[0] == "move":
         string += "anim.append({}_{}({}, '{}', position))".format(element_list[0], element_list[1], element_list[2],
-                                                              animation)
+                                                                  animation)
 
     elif element_list[0] == "loop":
         string += "for i in range({}):".format(element_list[1])
-        string += "\n\t\tanim.append({}_{}({}, '{}', position))".format(element_list[2], element_list[3], element_list[4],
-                                                                    animation)
-        #string += "\n\t\t" + element_list[2] + "_" + element_list[3] + "(self, " + element_list[4] + ", timer(), '" + animation + "') "
+        string += "\n\t\tanim.append({}_{}({}, '{}', position))".format(element_list[2], element_list[3],
+                                                                        element_list[4], animation)
 
-        #	if get_color(self) != 'ffffff':
-        #	    setcolor
+    # if get_color(self) != 'ffffff': setcolor
     elif element_list[0] == "if" or element_list[0] == "elif":
         color_code_check = "#" + element_list[1]
         color_to_change = "#" + element_list[2]
-        # string += "timer()"
-        string += "{} get_color(self) == ".format(element_list[0]) + str(
-            tuple(numpy.array(webcolors.hex_to_rgb(color_code_check)) / 255.0)) + ":"
+        normalized_color = tuple(numpy.array(webcolors.hex_to_rgb(color_code_check)) / 255.0)
         color = tuple(numpy.array(webcolors.hex_to_rgb(color_to_change)) / 255.0)
-        # string += "\n\t\ttimer()"
-        string += "\n\t\tchange_color(self, " + str(color) + ", timer())"
-        #string += "\n\t\tprint('Changed', '-'*100)"
-        # string += "\n\ttimer()"
+
+        string += "{} get_color(self) == {}:\n\t\tanim.append(change_color({}, position))".format(element_list[0], normalized_color, color)
 
     # change_color(self, color)
     elif element_list[0] == "else":
         color_to_change = "#" + element_list[1]
-        string += "else:"
         color = tuple(numpy.array(webcolors.hex_to_rgb(color_to_change)) / 255.0)
-        # string += "\n\t\ttimer()"
-        string += "\n\t\tchange_color(self, " + str(color) + ", timer())"
-        #string += "\n\t\tprint('Changed', '-'*100)"
+
+        string += "else:\n\t\tanim.append(change_color({}, position))".format(color)
+
     else:
         color_code = "#" + element_list[0]
         color = tuple(numpy.array(webcolors.hex_to_rgb(color_code)) / 255.0)
-        string += "change_color(self, " + str(color) + ", timer())"
+        string += "anim.append(change_color({}, position))".format(color)
 
     return string
 
@@ -622,7 +619,7 @@ def run(input_code):
 
     f2.close()
 
-    print("\n"+"-" * 50)
+    print("\n" + "-" * 50)
 
     return data
 
@@ -635,8 +632,8 @@ def run_test(input_code):
     parser(toks)
 
     data = [final_code + last_commands, tree + tree_last, errors]
-    #print(data)
-    #print(tree + tree_last)
+    # print(data)
+    # print(tree + tree_last)
 
     f = open("tree_text.txt", "w+")
     f.write(tree + tree_last)
@@ -655,9 +652,6 @@ def run_test(input_code):
 
         for pre, _, node in RenderTree(root):
             print("%s%s" % (pre, node.name))
-
-
-
 
 
 code = """if<color[#ffffff]>.color[#ffffff]
