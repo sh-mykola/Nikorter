@@ -1,13 +1,7 @@
 root
-├── color.1
-│   └── #0000ff
-├── move.2
+├── move.1
 │   └── up
 │       └── 2
-├── color.3
-│   └── #00ff00
-└── move.4
-    └── right
-        └── 4
-            └── animation
-                └── 2
+└── move.2
+    └── up
+        └── 3

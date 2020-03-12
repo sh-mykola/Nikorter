@@ -543,13 +543,14 @@ def build_command(element_list):
 
     # move_up(self, 2, timer())
     if element_list[0] == "move":
-        string += element_list[0] + "_" + element_list[1] + "(self, " + element_list[2] + ", timer(), '" \
-                  + animation + "') "
+        string += "anim.append({}_{}(self, {}, '{}'))".format(element_list[0], element_list[1], element_list[2],
+                                                              animation)
 
     elif element_list[0] == "loop":
-        string += "for i in range(" + element_list[1] + "):"
-        string += "\n\t\t" + element_list[2] + "_" + element_list[3] + "(self, " + element_list[4] + ", timer(), '" \
-                  + animation + "') "
+        string += "for i in range({}):".format(element_list[1])
+        string += "\n\t\tanim.append({}_{}(self, {}, '{}'))".format(element_list[2], element_list[3], element_list[4],
+                                                                    animation)
+        #string += "\n\t\t" + element_list[2] + "_" + element_list[3] + "(self, " + element_list[4] + ", timer(), '" + animation + "') "
 
         #	if get_color(self) != 'ffffff':
         #	    setcolor
@@ -557,12 +558,12 @@ def build_command(element_list):
         color_code_check = "#" + element_list[1]
         color_to_change = "#" + element_list[2]
         # string += "timer()"
-        string += "{} get_color(self, timer()) == ".format(element_list[0]) + str(
+        string += "{} get_color(self) == ".format(element_list[0]) + str(
             tuple(numpy.array(webcolors.hex_to_rgb(color_code_check)) / 255.0)) + ":"
         color = tuple(numpy.array(webcolors.hex_to_rgb(color_to_change)) / 255.0)
         # string += "\n\t\ttimer()"
         string += "\n\t\tchange_color(self, " + str(color) + ", timer())"
-        string += "\n\t\tprint('Changed', '-'*100)"
+        #string += "\n\t\tprint('Changed', '-'*100)"
         # string += "\n\ttimer()"
 
     # change_color(self, color)
@@ -572,7 +573,7 @@ def build_command(element_list):
         color = tuple(numpy.array(webcolors.hex_to_rgb(color_to_change)) / 255.0)
         # string += "\n\t\ttimer()"
         string += "\n\t\tchange_color(self, " + str(color) + ", timer())"
-        string += "\n\t\tprint('Changed', '-'*100)"
+        #string += "\n\t\tprint('Changed', '-'*100)"
     else:
         color_code = "#" + element_list[0]
         color = tuple(numpy.array(webcolors.hex_to_rgb(color_code)) / 255.0)

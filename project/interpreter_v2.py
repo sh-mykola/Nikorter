@@ -33,12 +33,31 @@ console_log = "CONSOLE LOG:\n" """
 def create_code(code_plain):
     f = open("interpreter_code_v2.py", "w+")
     f.write("from interpreter_defcode_v2 import move_up, move_down, move_right, move_left, change_color, get_color")
-    # f.write("\nimport time as tm\n")
-    f.write("\ntime = 0\ndef timer():\n\tglobal time\n\ttime += 0.3\n\treturn time")
+    f.write("\nfrom kivy.clock import Clock")
+    f.write("\nfrom functools import partial")
+    f.write("\nfrom kivy.animation import Animation\n\n")
+    f.write("time = 0\ndef timer():\n\tglobal time\n\ttime += 0.3\n\treturn time\n")
+    f.write("\n\ndef animator(self, code, *largs):\n\tcode.start(self.robot)\n\n")
     f.write("\ndef move_algorithm(self):\n")
+
+    f.write("\tanim = Animation()\n")
     for i in code_plain:
         f.write("\t{}\n".format(i))
-    f.write("\tpass\n")
+
+    """
+    \tanimator = Animation\n
+    \tfor i in anim:\n
+        \t\tanimator += i\n
+    
+    f.write("\tanimator = anim[0]\n\tfor i in range(1, len(anim)):\n\t\tanimator += anim[i]\n")
+    f.write("\tanimator.start(self.robot)\n")
+        
+    f.write("\tprint(anim)\n\tfor i in anim:\n\t\tClock.schedule_once(partial(animator, self, i), timer())\n")
+    # f.write("\tanimator.start(self.robot)\n")"""
+
+    f.write("\tfor i in range(1, len(anim)):\n\t\tanimator += anim[i]\n")
+    f.write("\tanimator.start(self.robot)\n")
+
     f.close()
 
 

@@ -1,13 +1,7 @@
 Parent Child
-root color.1
-color.1 #0000ff
+root move.1
+move.1 up
+up 2
 root move.2
 move.2 up
-up 2
-root color.3
-color.3 #00ff00
-root move.4
-move.4 right
-right 4
-4 animation
-animation 2
+up 3

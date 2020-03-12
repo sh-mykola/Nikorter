@@ -1,3 +1,4 @@
 color[#ffffff]
 if<color[#ffff00]>.color[#ff0000]
-if<color[#ffffff]>.color[#ff00ff]
+elif<color[#ffffff]>.color[#ff00ff]
+else.color[#0000ff]
