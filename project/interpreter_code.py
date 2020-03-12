@@ -543,12 +543,12 @@ def build_command(element_list):
 
     # move_up(self, 2, timer())
     if element_list[0] == "move":
-        string += "anim.append({}_{}(self, {}, '{}'))".format(element_list[0], element_list[1], element_list[2],
+        string += "anim.append({}_{}({}, '{}', position))".format(element_list[0], element_list[1], element_list[2],
                                                               animation)
 
     elif element_list[0] == "loop":
         string += "for i in range({}):".format(element_list[1])
-        string += "\n\t\tanim.append({}_{}(self, {}, '{}'))".format(element_list[2], element_list[3], element_list[4],
+        string += "\n\t\tanim.append({}_{}({}, '{}', position))".format(element_list[2], element_list[3], element_list[4],
                                                                     animation)
         #string += "\n\t\t" + element_list[2] + "_" + element_list[3] + "(self, " + element_list[4] + ", timer(), '" + animation + "') "
 

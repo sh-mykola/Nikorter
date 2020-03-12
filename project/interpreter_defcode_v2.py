@@ -1,7 +1,7 @@
 from kivy.animation import Animation
 durations = 0.2
 
-def move_up(self, times, animation, position):
+def move_up(times, animation, position):
     #check = self.robot.pos[1] + 100 * times
     #self.robot.pos[1] += 100 *times
     if (position[1] + 100 * times <= 1200):

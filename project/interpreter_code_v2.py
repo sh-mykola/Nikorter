@@ -1,24 +1,15 @@
 from interpreter_defcode_v2 import move_up, move_down, move_right, move_left, change_color, get_color
-from kivy.clock import Clock
-from functools import partial
 from kivy.animation import Animation
-
-time = 0
-def timer():
-	global time
-	time += 0.3
-	return time
-
-
-def animator(self, code, *largs):
-	code.start(self.robot)
 
 
 def move_algorithm(self):
 	anim = []
 	position = self.robot.pos
-	anim.append(move_up(self, 2, 'in_out_cubic', position))
-
+	anim.append(move_up(1, 'in_out_cubic', position))
+	position = anim[-1][1]
+	print('---:', position)
 	print(anim)
-	for i in anim:
-		Clock.schedule_once(partial(animator, self, i), timer())
+	animator = Animation()
+	for i in range(len(anim)):
+		animator += anim[i][0]
+	animator.start(self.robot)
