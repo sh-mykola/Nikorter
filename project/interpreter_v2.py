@@ -7,7 +7,7 @@ from kivy.animation import Animation
 from kivy.config import Config
 
 Config.set("graphics", "resizable", "0")
-Config.set("graphics", "width", "1000")
+Config.set("graphics", "width", "1000") # TODO set 1050
 Config.set("graphics", "height", "650")
 
 import interpreter_code_v2

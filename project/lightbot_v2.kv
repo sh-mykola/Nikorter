@@ -51,14 +51,15 @@
             pos: 0,0
             rgb: (0,0.5,1)
             canvas.before:
+
+                Color:
+                    rgb: self.rgb
                 Rectangle:
                     source: '/Volumes/Niko/Python/Nikorter/project/resources/body_main.png'
                     size: self.size
                     pos: (1000,0)
-                Color:
-                    rgb: self.rgb
                 Rectangle:
                     # TODO add texture to robot
-                    source: '/Volumes/Niko/Python/Nikorter/project/resources/robot_main.png'
+                    source: 'project/resources/robot_main.png'
                     pos: self.pos
                     size: (100,100)
