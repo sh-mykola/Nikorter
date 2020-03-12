@@ -1,17 +1,21 @@
 root
-├── color.1
-│   └── #ffffff
-└── statement.1
-    ├── if
-    │   └── color
-    │       └── #ffff00
-    │           └── than
-    │               └── #ff0000
-    ├── elif
-    │   └── color
-    │       └── #ffffff
-    │           └── than
-    │               └── #ff00ff
-    └── else
-        └── color
-            └── #0000ff
+├── color.2
+│   └── #0000ff
+├── move.3
+│   └── up
+│       └── 2
+├── color.4
+│   └── #00ff00
+├── move.5
+│   └── right
+│       └── 4
+│           └── animation
+│               └── 2
+└── last
+    ├── color.1
+    │   └── #ff0000
+    └── move.6
+        └── up
+            └── 2
+                └── animation
+                    └── 3

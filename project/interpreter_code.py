@@ -607,7 +607,7 @@ def run(input_code):
     f.write(tree + tree_last)
     f.close()
 
-    print("\n" + "-" * 50)
+    print("-" * 50)
     try:
         f2 = open("tree_view.txt", "w+")
         with open('tree_text.txt', 'r') as f:
@@ -632,7 +632,7 @@ def run(input_code):
         errors = True
 
     data = [final_code + last_commands, errors]
-    print(data)
+    print("-" * 50 + "\n", data)
     print("-" * 50 + "\n")
 
     return data
