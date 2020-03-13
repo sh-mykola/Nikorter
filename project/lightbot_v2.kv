@@ -10,7 +10,8 @@
         size: root.width, root.height
         BoxLayout:
             orientation: "vertical"
-
+            size_hint_x: None
+            width: 1000
             BoxLayout:
                 size_hint_y: None
                 height: 50
@@ -36,6 +37,7 @@
             BoxLayout:
                 size_hint_y: None
                 height: 100
+                on_parent: root.reset_position()
                 Button:
                     text: "Interpret"
                     on_press: root.start_interpret()
@@ -53,13 +55,38 @@
             canvas.before:
 
                 Color:
-                    rgb: self.rgb
+                    rgb: (0.07450980392, 0.07450980392, 0.07450980392)
                 Rectangle:
-                    source: '/Volumes/Niko/Python/Nikorter/project/resources/body_main.png'
+                    # texture: self.ellipse_image.texture
                     size: self.size
                     pos: (1000,0)
+
+
+                Color:
+                    rgb: self.rgb
+                Rectangle:
+                    source: '/Volumes/Niko/Python/Nikorter/project/resources/textures/background/body_border_hex.png'
+                    size: self.size
+                    pos: (1000,0)
+
+                Color:
+                    rgb: (1, 1, 1)
+                Rectangle:
+                    source: '/Volumes/Niko/Python/Nikorter/project/resources/textures/background/body_positions.png'
+                    size: self.size
+                    pos: (1000,0)
+
+                Color:
+                    rgb: self.rgb
+                Rectangle:
+                    source: '/Volumes/Niko/Python/Nikorter/project/resources/textures/background/body_border.png'
+                    size: self.size
+                    pos: (1000,0)
+
                 Rectangle:
                     # TODO add texture to robot
-                    source: 'project/resources/robot_main.png'
+                    source: '/Volumes/Niko/Python/Nikorter/project/resources/textures/robot/robot_main.png'
                     pos: self.pos
                     size: (100,100)
+
+

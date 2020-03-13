@@ -1,5 +1,5 @@
 from kivy.animation import Animation
-durations = 0.3
+durations = 0.4
 
 def move_up(times, animation, position):
     #check = self.robot.pos[1] + 100 * times
@@ -26,7 +26,7 @@ def move_down(times, animation, position):
 
 
 def move_right(times, animation, position):
-    if position[0] + 100 * times <= 1900:
+    if position[0] + 100 * times <= 2000:
         position[0] += 100 * times
         animator = Animation(x=position[0], duration=durations, t=animation)
         print("Current pos:" + str(position))
@@ -46,7 +46,7 @@ def move_left(times, animation, position):
         return [Animation(), position]
 
 def change_color(color, position):
-    animator = Animation(rgb=color, duration=durations)
+    animator = Animation(rgb=color, duration=0.2)
     return [animator, position]
 
 

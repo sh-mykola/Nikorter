@@ -1,7 +1,7 @@
 import logging
 import webcolors
 import numpy
-from anytree import Node, RenderTree, find_by_attr
+from anytree import Node, RenderTree
 
 logger = logging.Logger('catch_all')
 tokens = []
@@ -10,13 +10,6 @@ final_code = []
 last_commands = []
 tree = "Parent Child"
 tree_last = ""
-
-grammars = ["mov", "mo", "m", "loo", "lo", "l", "las", "la", "animatio", "animati", "animat", "anima", "anim", "ani",
-            "an", "a", "colo", "col", "c", "co", "dow", "do", "d", "righ", "rig", "ri", "r", "lef", "le", "i"]
-
-
-# print(code + "-" * 20)
-
 
 def lexer(plain_code):
     tok = ""
@@ -327,8 +320,8 @@ def parser(toks):
                     if toks[i + 5] + " " + toks[i + 6] == "DOT ANIMATION":
 
                         try:
-                            if toks[i + 7] + " " + toks[i + 8][0:7] + " " + toks[
-                                i + 9] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
+                            if toks[i + 7] + " " + toks[i + 8][0:7] + " " + toks[i + 9] != "OPEN_BRACKET NUMBER: " \
+                                                                                           "CLOSE_BRACKET":
                                 raise ValueError("Bad code")
                         except IndexError:
                             raise ValueError("Bad code")
@@ -369,8 +362,8 @@ def parser(toks):
                     pass
 
                 try:
-                    if toks[i + 3] + " " + toks[i + 4] + " " + toks[i + 5] + " " + toks[
-                        i + 6] != "CLOSE_LOOP_BRACKET DOT MOVE DOT":
+                    if toks[i + 3] + " " + toks[i + 4] + " " + toks[i + 5] + " " + toks[i + 6] != "CLOSE_LOOP_BRACKET " \
+                                                                                                  "DOT MOVE DOT":
                         raise ValueError("Bad code")
                 except IndexError:
                     raise ValueError("Bad code")
