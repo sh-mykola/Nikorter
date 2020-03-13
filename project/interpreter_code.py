@@ -185,128 +185,54 @@ def parser(toks):
                 raise ValueError('Repeated code!')
 
     while i < main_range:
-        if toks[i] + " " + toks[i + 1] == "MOVE DOT":
+
+        if toks[i] == "MOVE":
             try:
-                if toks[i + 3] + " " + toks[i + 4][0:7] + " " + toks[i + 5] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
+                if toks[i+1] != "DOT":
                     raise ValueError("Bad code")
             except IndexError:
                 raise ValueError("Bad code")
-            command_list.append("move")
-            tree += "\nroot move.{}".format(tree_id)
-            # print("FOUND ENTRY")
-            current_dir = ""
-            current_num = ""
-            if toks[i + 2] == "UP":
-                # print("FOUND UP")
-                command_list.append("up")
-                tree += "\nmove.{} up".format(tree_id)
-                current_dir = "up"
-                i += 1
-            elif toks[i + 2] == "DOWN":
-                # print("FOUND DOWN")
-                command_list.append("down")
-                tree += "\nmove.{} down".format(tree_id)
-                current_dir = "down"
-                i += 1
-            elif toks[i + 2] == "RIGHT":
-                # print("FOUND RIGHT")
-                command_list.append("right")
-                tree += "\nmove.{} right".format(tree_id)
-                current_dir = "right"
-                i += 1
-            elif toks[i + 2] == "LEFT":
-                # print("FOUND LEFT")
-                command_list.append("left")
-                tree += "\nmove.{} left".format(tree_id)
-                current_dir = "left"
-                i += 1
-            else:
-                raise ValueError("Bad code!")
 
-            if toks[i + 3][0:7] == "NUMBER:":
-                number = toks[i + 3][7:]
-                current_num = number
-                if number == "":
-                    raise ValueError('Not complete code.')
-                command_list.append(number)
-                if looping:
-                    number = str(int(number) * loop_times) + "_with_loop"
-                    current_num = number
-
-                tree += "\n{} {}".format(current_dir, current_num)
-                i += 2
-
-            if i + 6 < main_range:
-                if toks[i + 3] + " " + toks[i + 4] == "DOT ANIMATION":
-
-                    try:
-                        if toks[i + 5] + " " + toks[i + 6][0:7] + " " + toks[
-                            i + 7] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
-                            raise ValueError("Bad code")
-                    except IndexError:
-                        raise ValueError("Bad code")
-
-                    if toks[i + 6][0:7] == "NUMBER:":
-                        number = toks[i + 6][7:]
-                        if number == "":
-                            raise ValueError('Not complete code.')
-                        command_list.append(number)
-
-                        tree += "\n{} animation\nanimation {}".format(current_num, number)
-                    try:
-                        if toks[i + 8] == "DOT":
-                            raise ValueError('Not complete code.')
-                    except IndexError:
-                        pass
-            i += 2
-            # print(command_list)
-            final_code.append(build_command(command_list))
-            command_list = []
-            looping = False
-            tree_id += 1
-
-        elif i + 3 < main_range:
-            if toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] == "LAST DOT MOVE DOT":
+            if toks[i] + " " + toks[i + 1] == "MOVE DOT":
                 try:
-                    if toks[i + 5] + " " + toks[i + 6][0:7] + " " + toks[i + 7] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
+                    if toks[i + 3] + " " + toks[i + 4][0:7] + " " + toks[i + 5] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
                         raise ValueError("Bad code")
                 except IndexError:
                     raise ValueError("Bad code")
                 command_list.append("move")
-                last_include = True
-                tree_last += "\nlast move.{}".format(tree_id)
+                tree += "\nroot move.{}".format(tree_id)
                 # print("FOUND ENTRY")
                 current_dir = ""
                 current_num = ""
-                if toks[i + 4] == "UP":
+                if toks[i + 2] == "UP":
                     # print("FOUND UP")
                     command_list.append("up")
-                    tree_last += "\nmove.{} up".format(tree_id)
+                    tree += "\nmove.{} up".format(tree_id)
                     current_dir = "up"
                     i += 1
-                elif toks[i + 4] == "DOWN":
+                elif toks[i + 2] == "DOWN":
                     # print("FOUND DOWN")
                     command_list.append("down")
-                    tree_last += "\nmove.{} down".format(tree_id)
+                    tree += "\nmove.{} down".format(tree_id)
                     current_dir = "down"
                     i += 1
-                elif toks[i + 4] == "RIGHT":
+                elif toks[i + 2] == "RIGHT":
                     # print("FOUND RIGHT")
                     command_list.append("right")
-                    tree_last += "\nmove.{} right".format(tree_id)
+                    tree += "\nmove.{} right".format(tree_id)
                     current_dir = "right"
                     i += 1
-                elif toks[i + 4] == "LEFT":
+                elif toks[i + 2] == "LEFT":
                     # print("FOUND LEFT")
                     command_list.append("left")
-                    tree_last += "\nmove.{} left".format(tree_id)
+                    tree += "\nmove.{} left".format(tree_id)
                     current_dir = "left"
                     i += 1
                 else:
                     raise ValueError("Bad code!")
 
-                if toks[i + 5][0:7] == "NUMBER:":
-                    number = toks[i + 5][7:]
+                if toks[i + 3][0:7] == "NUMBER:":
+                    number = toks[i + 3][7:]
                     current_num = number
                     if number == "":
                         raise ValueError('Not complete code.')
@@ -314,140 +240,244 @@ def parser(toks):
                     if looping:
                         number = str(int(number) * loop_times) + "_with_loop"
                         current_num = number
-                    tree_last += "\n{} {}".format(current_dir, current_num)
+
+                    tree += "\n{} {}".format(current_dir, current_num)
                     i += 2
-                if i + 8 < main_range:
-                    if toks[i + 5] + " " + toks[i + 6] == "DOT ANIMATION":
+
+                if i + 6 < main_range:
+                    if toks[i + 3] + " " + toks[i + 4] == "DOT ANIMATION":
 
                         try:
-                            if toks[i + 7] + " " + toks[i + 8][0:7] + " " + toks[i + 9] != "OPEN_BRACKET NUMBER: " \
-                                                                                           "CLOSE_BRACKET":
+                            if toks[i + 5] + " " + toks[i + 6][0:7] + " " + toks[
+                                i + 7] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
                                 raise ValueError("Bad code")
                         except IndexError:
                             raise ValueError("Bad code")
 
-                        if toks[i + 8][0:7] == "NUMBER:":
-                            number = toks[i + 8][7:]
+                        if toks[i + 6][0:7] == "NUMBER:":
+                            number = toks[i + 6][7:]
                             if number == "":
                                 raise ValueError('Not complete code.')
                             command_list.append(number)
-                            tree_last += "\n{} animation\nanimation {}".format(current_num, number)
-                    try:
-                        if toks[i + 10] == "DOT":
-                            raise ValueError('Not complete code.')
-                    except IndexError:
-                        pass
-                i += 4
 
-                last_commands.append(build_command(command_list))
+                            tree += "\n{} animation\nanimation {}".format(current_num, number)
+                        try:
+                            if toks[i + 8] == "DOT":
+                                raise ValueError('Not complete code.')
+                        except IndexError:
+                            pass
+                i += 2
+                # print(command_list)
+                final_code.append(build_command(command_list))
                 command_list = []
                 looping = False
                 tree_id += 1
 
         if i + 3 < main_range:
-            if toks[i] + " " + toks[i + 1] + " " + toks[i + 2][0:5] == "LOOP OPEN_LOOP_BRACKET TIMES":
-
+            if toks[i] == "LAST":
                 try:
-                    if toks[i + 4] != "DOT":
-                        raise ValueError('Not complete code.')
-                except IndexError:
-                    raise ValueError('Not complete code.')
-
-                if looping:
-                    raise ValueError('Not complete code.')
-                try:
-                    if toks[i - 2] == "LAST":
-                        raise ValueError('Not complete code.')
-                except IndexError:
-                    pass
-
-                try:
-                    if toks[i + 3] + " " + toks[i + 4] + " " + toks[i + 5] + " " + toks[i + 6] != "CLOSE_LOOP_BRACKET " \
-                                                                                                  "DOT MOVE DOT":
+                    if toks[i + 1] != "DOT":
                         raise ValueError("Bad code")
                 except IndexError:
                     raise ValueError("Bad code")
 
-                number = toks[i + 2][6:]
-                if number == "":
-                    raise ValueError('Not complete code.')
-                command_list.append("loop")
-                command_list.append(number)
+                if toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] == "LAST DOT MOVE DOT":
+                    try:
+                        if toks[i + 5] + " " + toks[i + 6][0:7] + " " + toks[i + 7] != "OPEN_BRACKET NUMBER: CLOSE_BRACKET":
+                            raise ValueError("Bad code")
+                    except IndexError:
+                        raise ValueError("Bad code")
+                    command_list.append("move")
+                    last_include = True
+                    tree_last += "\nlast move.{}".format(tree_id)
+                    # print("FOUND ENTRY")
+                    current_dir = ""
+                    current_num = ""
+                    if toks[i + 4] == "UP":
+                        # print("FOUND UP")
+                        command_list.append("up")
+                        tree_last += "\nmove.{} up".format(tree_id)
+                        current_dir = "up"
+                        i += 1
+                    elif toks[i + 4] == "DOWN":
+                        # print("FOUND DOWN")
+                        command_list.append("down")
+                        tree_last += "\nmove.{} down".format(tree_id)
+                        current_dir = "down"
+                        i += 1
+                    elif toks[i + 4] == "RIGHT":
+                        # print("FOUND RIGHT")
+                        command_list.append("right")
+                        tree_last += "\nmove.{} right".format(tree_id)
+                        current_dir = "right"
+                        i += 1
+                    elif toks[i + 4] == "LEFT":
+                        # print("FOUND LEFT")
+                        command_list.append("left")
+                        tree_last += "\nmove.{} left".format(tree_id)
+                        current_dir = "left"
+                        i += 1
+                    else:
+                        raise ValueError("Bad code!")
 
+                    if toks[i + 5][0:7] == "NUMBER:":
+                        number = toks[i + 5][7:]
+                        current_num = number
+                        if number == "":
+                            raise ValueError('Not complete code.')
+                        command_list.append(number)
+                        if looping:
+                            number = str(int(number) * loop_times) + "_with_loop"
+                            current_num = number
+                        tree_last += "\n{} {}".format(current_dir, current_num)
+                        i += 2
+                    if i + 8 < main_range:
+                        if toks[i + 5] + " " + toks[i + 6] == "DOT ANIMATION":
+
+                            try:
+                                if toks[i + 7] + " " + toks[i + 8][0:7] + " " + toks[i + 9] != "OPEN_BRACKET NUMBER: " \
+                                                                                               "CLOSE_BRACKET":
+                                    raise ValueError("Bad code")
+                            except IndexError:
+                                raise ValueError("Bad code")
+
+                            if toks[i + 8][0:7] == "NUMBER:":
+                                number = toks[i + 8][7:]
+                                if number == "":
+                                    raise ValueError('Not complete code.')
+                                command_list.append(number)
+                                tree_last += "\n{} animation\nanimation {}".format(current_num, number)
+                        try:
+                            if toks[i + 10] == "DOT":
+                                raise ValueError('Not complete code.')
+                        except IndexError:
+                            pass
+                    i += 4
+
+                    last_commands.append(build_command(command_list))
+                    command_list = []
+                    looping = False
+                    tree_id += 1
+
+            elif toks[i] == "LOOP":
                 try:
-                    if toks[i + 5] == "LAST":
-                        raise ValueError('Not complete code.')
+                    if toks[i + 1] != "OPEN_LOOP_BRACKET":
+                        raise ValueError("Bad code")
                 except IndexError:
-                    pass
-                i += 3
+                    raise ValueError("Bad code")
 
-                looping = True
-                loop_times = int(number)
+                if toks[i] + " " + toks[i + 1] + " " + toks[i + 2][0:5] == "LOOP OPEN_LOOP_BRACKET TIMES":
+
+                    try:
+                        if toks[i + 4] != "DOT":
+                            raise ValueError('Not complete code.')
+                    except IndexError:
+                        raise ValueError('Not complete code.')
+
+                    if looping:
+                        raise ValueError('Not complete code.')
+                    try:
+                        if toks[i - 2] == "LAST":
+                            raise ValueError('Not complete code.')
+                    except IndexError:
+                        pass
+
+                    try:
+                        if toks[i + 3] + " " + toks[i + 4] + " " + toks[i + 5] + " " + toks[i + 6] != "CLOSE_LOOP_BRACKET " \
+                                                                                                      "DOT MOVE DOT":
+                            raise ValueError("Bad code")
+                    except IndexError:
+                        raise ValueError("Bad code")
+
+                    number = toks[i + 2][6:]
+                    if number == "":
+                        raise ValueError('Not complete code.')
+                    command_list.append("loop")
+                    command_list.append(number)
+
+                    try:
+                        if toks[i + 5] == "LAST":
+                            raise ValueError('Not complete code.')
+                    except IndexError:
+                        pass
+                    i += 3
+
+                    looping = True
+                    loop_times = int(number)
 
         if i + 10 < main_range:
-            if toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][
-                                                                                           0:4] == "IF OPEN_IF_BRACKET COLOR OPEN_SQ_BRACKET CODE":
-                if toks[i + 7] + " " + toks[i + 8] + " " + toks[i + 9] + " " + toks[i + 10][
-                                                                               0:4] != "DOT COLOR OPEN_SQ_BRACKET CODE":
-                    raise ValueError('Not complete code.')
+
+            if toks[i] == "IF" or toks[i] == "ELIF":
                 try:
-                    if toks[i - 2] == "LAST":
+                    if toks[i + 1] != "OPEN_IF_BRACKET":
+                        raise ValueError("Bad code")
+                except IndexError:
+                    raise ValueError("Bad code")
+
+                if toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][
+                                                                                               0:4] == "IF OPEN_IF_BRACKET COLOR OPEN_SQ_BRACKET CODE":
+                    if toks[i + 7] + " " + toks[i + 8] + " " + toks[i + 9] + " " + toks[i + 10][
+                                                                                   0:4] != "DOT COLOR OPEN_SQ_BRACKET CODE":
                         raise ValueError('Not complete code.')
-                except IndexError:
-                    pass
+                    try:
+                        if toks[i - 2] == "LAST":
+                            raise ValueError('Not complete code.')
+                    except IndexError:
+                        pass
 
-                color_check = toks[i + 4][6:]
-                color_set = toks[i + 10][6:]
+                    color_check = toks[i + 4][6:]
+                    color_set = toks[i + 10][6:]
 
-                current_statement = "statement.{}".format(statement_id)
-                statement_id += 1
+                    current_statement = "statement.{}".format(statement_id)
+                    statement_id += 1
 
-                tree += "\nroot {}\n{} if\nif color".format(current_statement, current_statement)
-                tree += "\ncolor #{}\n#{} than\nthan #{}".format(color_check, color_check, color_set)
+                    tree += "\nroot {}\n{} if\nif color".format(current_statement, current_statement)
+                    tree += "\ncolor #{}\n#{} than\nthan #{}".format(color_check, color_check, color_set)
 
-                # tree += "\tif\n\t\tcolor\n\t\t\t #" + color_check + "\n\t\t\t\t    than\n\t\t\t\t\t    #" + color_set + "\n"
+                    # tree += "\tif\n\t\tcolor\n\t\t\t #" + color_check + "\n\t\t\t\t    than\n\t\t\t\t\t    #" + color_set + "\n"
 
-                command_list.append("if")
-                command_list.append(color_check)
-                command_list.append(color_set)
-                final_code.append(build_command(command_list))
-                command_list = []
+                    command_list.append("if")
+                    command_list.append(color_check)
+                    command_list.append(color_set)
+                    final_code.append(build_command(command_list))
+                    command_list = []
 
-                i += 10
-            elif toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][
-                                                                                             0:4] == "ELIF OPEN_IF_BRACKET COLOR OPEN_SQ_BRACKET CODE":
-                if toks[i + 7] + " " + toks[i + 8] + " " + toks[i + 9] + " " + toks[i + 10][
-                                                                               0:4] != "DOT COLOR OPEN_SQ_BRACKET CODE":
-                    raise ValueError('Not complete code.')
+                    i += 10
 
-                try:
-                    if toks[i - 12] + " " + toks[i - 11] != "ELIF OPEN_IF_BRACKET":
-                        if toks[i - 12] + " " + toks[i - 11] != "IF OPEN_IF_BRACKET":
-                            raise ValueError('Missing IF or ELIF.')
-                except IndexError:
-                    raise ValueError('Missing IF.')
-
-                try:
-                    if toks[i - 2] == "LAST":
+                elif toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][
+                                                                                                 0:4] == "ELIF OPEN_IF_BRACKET COLOR OPEN_SQ_BRACKET CODE":
+                    if toks[i + 7] + " " + toks[i + 8] + " " + toks[i + 9] + " " + toks[i + 10][
+                                                                                   0:4] != "DOT COLOR OPEN_SQ_BRACKET CODE":
                         raise ValueError('Not complete code.')
-                except IndexError:
-                    pass
 
-                color_check = toks[i + 4][6:]
-                color_set = toks[i + 10][6:]
+                    try:
+                        if toks[i - 12] + " " + toks[i - 11] != "ELIF OPEN_IF_BRACKET":
+                            if toks[i - 12] + " " + toks[i - 11] != "IF OPEN_IF_BRACKET":
+                                raise ValueError('Missing IF or ELIF.')
+                    except IndexError:
+                        raise ValueError('Missing IF.')
 
-                tree += "\n{} elif\nelif color".format(current_statement)
-                tree += "\ncolor #{}\n#{} than\nthan #{}".format(color_check, color_check, color_set)
+                    try:
+                        if toks[i - 2] == "LAST":
+                            raise ValueError('Not complete code.')
+                    except IndexError:
+                        pass
 
-                # tree += "\tif\n\t\tcolor\n\t\t\t #" + color_check + "\n\t\t\t\t    than\n\t\t\t\t\t    #" + color_set + "\n"
+                    color_check = toks[i + 4][6:]
+                    color_set = toks[i + 10][6:]
 
-                command_list.append("elif")
-                command_list.append(color_check)
-                command_list.append(color_set)
-                final_code.append(build_command(command_list))
-                command_list = []
+                    tree += "\n{} elif\nelif color".format(current_statement)
+                    tree += "\ncolor #{}\n#{} than\nthan #{}".format(color_check, color_check, color_set)
 
-                i += 10
+                    # tree += "\tif\n\t\tcolor\n\t\t\t #" + color_check + "\n\t\t\t\t    than\n\t\t\t\t\t    #" + color_set + "\n"
+
+                    command_list.append("elif")
+                    command_list.append(color_check)
+                    command_list.append(color_set)
+                    final_code.append(build_command(command_list))
+                    command_list = []
+
+                    i += 10
 
         if i + 4 < main_range:
 
@@ -480,8 +510,7 @@ def parser(toks):
 
                 i += 3
 
-        if i + 4 < main_range:
-            if toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][
+            elif toks[i] + " " + toks[i + 1] + " " + toks[i + 2] + " " + toks[i + 3] + " " + toks[i + 4][
                                                                                            0:4] == "LAST DOT COLOR OPEN_SQ_BRACKET CODE":
                 try:
                     if toks[i + 6] == "DOT":
@@ -499,17 +528,23 @@ def parser(toks):
                 tree_id += 1
 
         if i + 2 < main_range:
-            if toks[i] + " " + toks[i + 1] + " " + toks[i + 2][0:4] == "COLOR OPEN_SQ_BRACKET CODE":
-                if i + 4 < main_range:
-                    if toks[i + 4] == "DOT":
-                        raise ValueError('Not complete code.')
-                color = toks[i + 2][6:]
-                command_list.append(color)
-                final_code.append(build_command(command_list))
-                command_list = []
-                tree += "\nroot color.{}\ncolor.{} #{}".format(tree_id, tree_id, color)
-                i += 3
-                tree_id += 1
+            if toks[i] == "COLOR":
+                try:
+                    if toks[i + 1] != "OPEN_SQ_BRACKET":
+                        raise ValueError("Bad code")
+                except IndexError:
+                    raise ValueError("Bad code")
+                if toks[i] + " " + toks[i + 1] + " " + toks[i + 2][0:4] == "COLOR OPEN_SQ_BRACKET CODE":
+                    if i + 4 < main_range:
+                        if toks[i + 4] == "DOT":
+                            raise ValueError('Not complete code.')
+                    color = toks[i + 2][6:]
+                    command_list.append(color)
+                    final_code.append(build_command(command_list))
+                    command_list = []
+                    tree += "\nroot color.{}\ncolor.{} #{}".format(tree_id, tree_id, color)
+                    i += 3
+                    tree_id += 1
 
         if toks[main_range] == "DOT" or toks[main_range] == "ANIMATION":
             raise ValueError('Not complete code.')
@@ -661,17 +696,9 @@ def run_test(input_code):
             print("%s%s" % (pre, node.name))
 
 
-code = """if<color[#ffffff]>.color[#ffffff]
-elif<color[#ffffff]>.color[#ffffff]
-elif<color[#ffffff]>.color[#ffffff]
-else.color[#ffffff]
-if<color[#ffffff]>.color[#ffffff]
-elif<color[#ffffff]>.color[#ffffff]
-elif<color[#ffffff]>.color[#ffffff]
-else.color[#ffffff]
-if<color[#ffffff]>.color[#ffffff]
-elif<color[#ffffff]>.color[#ffffff]
-elif<color[#ffffff]>.color[#ffffff]
-else.color[#ffffff]"""
+code = """color[#ffffff]
+if<color[#ffff00]>.color[#ff0000]
+elif<color[#ffffff]>.color[#ff00ff]
+else.color[#0000ff]"""
 
 # run_test(code)

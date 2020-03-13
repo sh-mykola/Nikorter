@@ -8,6 +8,7 @@ from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty
 from kivy.animation import Animation
 from kivy.uix.image import Image
+from kivy.core.audio import SoundLoader
 from kivy.config import Config
 
 Config.set("graphics", "resizable", "0")
@@ -38,6 +39,7 @@ def create_code(code_plain):
 
     f.close()
 
+labyrinth = False
 
 class MyProgram(Widget):
     code = ObjectProperty(None)
@@ -97,6 +99,22 @@ class MyProgram(Widget):
         with open(path, 'r') as file:
             data = file.read()
         self.code.text = data
+
+    def show_labyrinth(self):
+        global labyrinth
+        sound = SoundLoader.load('/Volumes/Niko/Python/Nikorter/project/resources/sounds/ROBOTIC_Mech_Movement_01_Footstep_stereo.wav')
+        if labyrinth:
+            sound.play()
+            anim = Animation(labyrinth_opacity = 0, duration=0.5, t='in_out_back')
+            anim.start(self.robot)
+            labyrinth = False
+        else:
+            sound.play()
+            anim = Animation(labyrinth_opacity = 1, duration=0.5, t='in_out_back')
+            anim.start(self.robot)
+            labyrinth = True
+
+
 
     """
     def place_robot(self):

@@ -2,29 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c01ef20-4bf6-493f-95ac-fe8554822a75" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/project/resources/sounds/ROBOTIC_Mech_Movement_01_Footstep_stereo.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/sounds/ROBOTIC_Mech_Movement_02_Footstep_stereo.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/sounds/ROBOTIC_Mech_Movement_03_Clean_Footstep_Fast_stereo.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/sounds/ROBOTIC_Mech_Movement_03_Clean_Footstep_stereo.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/sounds/ROBOTIC_Mech_Movement_03_Footstep_Fast_stereo.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/textures/background/Hex.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/textures/background/body_border.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/textures/background/body_border_hex.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/textures/background/body_labyrinth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/textures/background/body_main_0.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/textures/background/body_positions.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/textures/robot/robot_main.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/resources/textures/robot/robot_main.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/solution.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/example2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/interpreter_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/interpreter_code.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/interpreter_code_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/interpreter_code_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/interpreter_defcode_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/interpreter_defcode_v2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/interpreter_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/interpreter_v2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/lightbot_v2.kv" beforeDir="false" afterPath="$PROJECT_DIR$/project/lightbot_v2.kv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/resources/body_main.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/resources/robot_main.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/resources/robot_main.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/resources/textures/background/body_labyrinth.png" beforeDir="false" afterPath="$PROJECT_DIR$/project/resources/textures/background/body_labyrinth.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/resources/textures/robot/robot_main.png" beforeDir="false" afterPath="$PROJECT_DIR$/project/resources/textures/robot/robot_main.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/tree_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/tree_text.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/tree_view.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/tree_view.txt" afterDir="false" />
     </list>
@@ -363,7 +349,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584047576645</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Interpreter v3.4&#10;- Textures in progress...">
+      <created>1584117616923</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1584117616923</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -401,52 +394,57 @@
     <MESSAGE value="Lexer v2.9" />
     <MESSAGE value="Lexer v3" />
     <MESSAGE value="Interpreter v3.1&#10;- have full limits" />
-    <option name="LAST_COMMIT_MESSAGE" value="Interpreter v3.1&#10;- have full limits" />
+    <MESSAGE value="Interpreter v3.4&#10;- Textures in progress..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Interpreter v3.4&#10;- Textures in progress..." />
   </component>
   <component name="WindowStateProjectService">
     <state x="104" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582379662097">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
     <state x="104" y="62" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.800@0.0.1280.800" timestamp="1582379662097" />
-    <state x="264" y="2" key="CommitChangelistDialog2" timestamp="1584047576534">
+    <state x="220" y="210" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1584128544846">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state x="264" y="2" key="CommitChangelistDialog2/0.0.1280.800@0.0.1280.800" timestamp="1584047576534" />
+    <state x="220" y="210" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.800@0.0.1280.800" timestamp="1584128544846" />
+    <state x="264" y="0" width="857" height="800" key="CommitChangelistDialog2" timestamp="1584117616563">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="264" y="0" width="857" height="800" key="CommitChangelistDialog2/0.0.1280.800@0.0.1280.800" timestamp="1584117616563" />
     <state x="264" y="23" key="CommitChangelistDialog2/0.23.1280.713@0.23.1280.713" timestamp="1582716104142" />
     <state x="264" y="23" key="CommitChangelistDialog2/0.23.1280.716@0.23.1280.716" timestamp="1582471112257" />
-    <state width="1259" height="188" key="GridCell.Tab.0.bottom" timestamp="1584116443030">
+    <state width="1259" height="184" key="GridCell.Tab.0.bottom" timestamp="1584132643438">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="188" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1584116443030" />
+    <state width="1259" height="184" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1584132643438" />
     <state width="1259" height="158" key="GridCell.Tab.0.bottom/0.23.1280.708@0.23.1280.708" timestamp="1583847345033" />
     <state width="1259" height="192" key="GridCell.Tab.0.bottom/0.23.1280.713@0.23.1280.713" timestamp="1582717971616" />
     <state width="1259" height="174" key="GridCell.Tab.0.bottom/0.23.1280.715@0.23.1280.715" timestamp="1582715488348" />
     <state width="1259" height="165" key="GridCell.Tab.0.bottom/0.23.1280.716@0.0.1280.800" timestamp="1582471261477" />
     <state width="1259" height="165" key="GridCell.Tab.0.bottom/0.23.1280.716@0.23.1280.716" timestamp="1582471959196" />
     <state width="1259" height="165" key="GridCell.Tab.0.bottom/0.23.1280.717@0.23.1280.717" timestamp="1582471973373" />
-    <state width="1259" height="188" key="GridCell.Tab.0.center" timestamp="1584116443029">
+    <state width="1259" height="184" key="GridCell.Tab.0.center" timestamp="1584132643437">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="188" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1584116443029" />
+    <state width="1259" height="184" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1584132643437" />
     <state width="1259" height="158" key="GridCell.Tab.0.center/0.23.1280.708@0.23.1280.708" timestamp="1583847345032" />
     <state width="1259" height="192" key="GridCell.Tab.0.center/0.23.1280.713@0.23.1280.713" timestamp="1582717971616" />
     <state width="1259" height="174" key="GridCell.Tab.0.center/0.23.1280.715@0.23.1280.715" timestamp="1582715488347" />
     <state width="1259" height="165" key="GridCell.Tab.0.center/0.23.1280.716@0.23.1280.716" timestamp="1582471959195" />
     <state width="1259" height="165" key="GridCell.Tab.0.center/0.23.1280.717@0.23.1280.717" timestamp="1582471973373" />
     <state width="1259" height="165" key="GridCell.Tab.0.center/0.23.1280.721@0.0.1280.800" timestamp="1582471261374" />
-    <state width="1259" height="188" key="GridCell.Tab.0.left" timestamp="1584116443028">
+    <state width="1259" height="184" key="GridCell.Tab.0.left" timestamp="1584132643436">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="188" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1584116443028" />
+    <state width="1259" height="184" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1584132643436" />
     <state width="1259" height="158" key="GridCell.Tab.0.left/0.23.1280.708@0.23.1280.708" timestamp="1583847345032" />
     <state width="1259" height="192" key="GridCell.Tab.0.left/0.23.1280.713@0.23.1280.713" timestamp="1582717971615" />
     <state width="1259" height="174" key="GridCell.Tab.0.left/0.23.1280.715@0.23.1280.715" timestamp="1582715488347" />
     <state width="1259" height="165" key="GridCell.Tab.0.left/0.23.1280.716@0.23.1280.716" timestamp="1582471959194" />
     <state width="1259" height="165" key="GridCell.Tab.0.left/0.23.1280.717@0.23.1280.717" timestamp="1582471973372" />
-    <state width="1259" height="188" key="GridCell.Tab.0.right" timestamp="1584116443030">
+    <state width="1259" height="184" key="GridCell.Tab.0.right" timestamp="1584132643437">
       <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1259" height="188" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1584116443030" />
+    <state width="1259" height="184" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1584132643437" />
     <state width="1259" height="158" key="GridCell.Tab.0.right/0.23.1280.708@0.23.1280.708" timestamp="1583847345032" />
     <state width="1259" height="192" key="GridCell.Tab.0.right/0.23.1280.713@0.23.1280.713" timestamp="1582717971616" />
     <state width="1259" height="174" key="GridCell.Tab.0.right/0.23.1280.715@0.23.1280.715" timestamp="1582715488348" />

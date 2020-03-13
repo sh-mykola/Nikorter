@@ -6,6 +6,7 @@
     robot: robot
     path: path
 
+
     BoxLayout:
         size: root.width, root.height
         BoxLayout:
@@ -47,11 +48,18 @@
                 Button:
                     text: "Reset"
                     on_press: root.reset_position()
+                Button:
+                    size_hint_x: None
+                    width: 100
+                    text: "?"
+                    on_press: root.show_labyrinth()
 
         Widget:
             id: robot
             pos: 0,0
             rgb: (0,0.5,1)
+            labyrinth_opacity: 0
+
             canvas.before:
 
                 Color:
@@ -64,8 +72,9 @@
 
                 Color:
                     rgb: self.rgb
+                    a: self.labyrinth_opacity
                 Rectangle:
-                    source: '/Volumes/Niko/Python/Nikorter/project/resources/textures/background/body_border_hex.png'
+                    source: '/Volumes/Niko/Python/Nikorter/project/resources/textures/background/body_labyrinth.png'
                     size: self.size
                     pos: (1000,0)
 
@@ -79,14 +88,7 @@
                 Color:
                     rgb: self.rgb
                 Rectangle:
-                    source: '/Volumes/Niko/Python/Nikorter/project/resources/textures/background/body_border.png'
-                    size: self.size
-                    pos: (1000,0)
-
-                Rectangle:
-                    # TODO add texture to robot
                     source: '/Volumes/Niko/Python/Nikorter/project/resources/textures/robot/robot_main.png'
                     pos: self.pos
                     size: (100,100)
-
 
