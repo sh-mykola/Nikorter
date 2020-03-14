@@ -3,9 +3,10 @@ import interpreter_code
 from importlib import reload
 import random
 import webcolors
+import os
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty
+from kivy.properties import ObjectProperty, StringProperty
 from kivy.animation import Animation
 from kivy.uix.image import Image
 from kivy.core.audio import SoundLoader
@@ -15,6 +16,8 @@ Config.set("graphics", "resizable", "0")
 Config.set("graphics", "width", "1050")
 Config.set("graphics", "height", "650")
 
+local_path = os.path.dirname(__file__)
+print(local_path)
 
 def create_code(code_plain):
     f = open("interpreter_code_v2.py", "w+")
@@ -45,6 +48,11 @@ class MyProgram(Widget):
     code = ObjectProperty(None)
     console = ObjectProperty(None)
     robot = ObjectProperty(None)
+    local_dir = StringProperty(local_path)
+
+    """def __init__(self, **kwargs):
+        super(MyProgram, self).__init__(**kwargs)
+        self.local_dir = str(local_path)"""
 
     def start_interpret(self):
         # getting code
@@ -102,7 +110,7 @@ class MyProgram(Widget):
 
     def show_labyrinth(self):
         global labyrinth
-        sound = SoundLoader.load('/Volumes/Niko/Python/Nikorter/project/resources/sounds/ROBOTIC_Mech_Movement_01_Footstep_stereo.wav')
+        sound = SoundLoader.load(local_path+'/resources/sounds/ROBOTIC_Mech_Movement_01_Footstep_stereo.wav')
         if labyrinth:
             sound.play()
             anim = Animation(labyrinth_opacity = 0, duration=0.5, t='in_out_back')

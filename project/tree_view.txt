@@ -1,14 +1,189 @@
 root
-├── color.1
-│   └── #ffffff
-└── statement.1
-    ├── if
-    │   └── color
-    │       └── #ffff00
-    │           └── than
-    │               └── #ff0000
-    └── elif
-        └── color
-            └── #ffffff
-                └── than
-                    └── #ff00ff
+├── move.1
+│   └── up
+│       └── 1
+├── move.2
+│   └── right
+│       └── 2_with_loop
+│           └── animation
+│               └── 5
+├── move.3
+│   └── up
+│       └── 1
+│           └── animation
+│               └── 9
+├── color.4
+│   └── #4de3c3
+├── move.5
+│   └── left
+│       └── 4
+│           └── animation
+│               └── 3
+├── move.6
+│   └── down
+│       └── 2
+├── move.9
+│   └── left
+│       └── 1
+├── statement.1
+│   └── if
+│       └── color
+│           └── #4de3c3
+│               └── than
+│                   └── #ea282f
+├── move.10
+│   └── up
+│       └── 1
+├── move.11
+│   └── left
+│       └── 1
+├── move.12
+│   └── down
+│       └── 1
+│           └── animation
+│               └── 4
+├── statement.2
+│   ├── if
+│   │   └── color
+│   │       └── #4de3c3
+│   │           └── than
+│   │               └── #ea282f
+│   └── elif
+│       └── color
+│           └── #ea282f
+│               └── than
+│                   └── #fbf600
+├── move.13
+│   └── left
+│       └── 1
+├── move.14
+│   └── up
+│       └── 2
+├── move.16
+│   └── right
+│       └── 1
+├── move.17
+│   └── up
+│       └── 3
+├── statement.3
+│   ├── if
+│   │   └── color
+│   │       └── #4de3c3
+│   │           └── than
+│   │               └── #ea282f
+│   ├── elif
+│   │   └── color
+│   │       └── #ea282f
+│   │           └── than
+│   │               └── #fbf600
+│   └── else
+│       └── color
+│           └── #50d625
+├── move.18
+│   └── right
+│       └── 1
+├── move.19
+│   └── up
+│       └── 1
+│           └── animation
+│               └── 1
+├── move.20
+│   └── right
+│       └── 1
+├── move.23
+│   └── up
+│       └── 1
+│           └── animation
+│               └── 3
+├── move.24
+│   └── right
+│       └── 1
+│           └── animation
+│               └── 2
+├── move.25
+│   └── down
+│       └── 1
+├── statement.4
+│   ├── if
+│   │   └── color
+│   │       └── #4de3c3
+│   │           └── than
+│   │               └── #ea282f
+│   ├── elif
+│   │   └── color
+│   │       └── #ea282f
+│   │           └── than
+│   │               └── #fbf600
+│   ├── elif
+│   │   └── color
+│   │       └── #50d625
+│   │           └── than
+│   │               └── #0e51e1
+│   ├── elif
+│   │   └── color
+│   │       └── #ffffff
+│   │           └── than
+│   │               └── #fbf600
+│   └── else
+│       └── color
+│           └── #50d625
+├── move.26
+│   └── right
+│       └── 1
+├── move.27
+│   └── down
+│       └── 1
+│           └── animation
+│               └── 6
+├── move.28
+│   └── left
+│       └── 2
+├── move.29
+│   └── down
+│       └── 1
+├── move.33
+│   └── right
+│       └── 3_with_loop
+├── move.35
+│   └── up
+│       └── 3_with_loop
+│           └── animation
+│               └── 7
+├── move.36
+│   └── left
+│       └── 1
+└── last
+    ├── move.7
+    │   └── up
+    │       └── 1
+    │           └── animation
+    │               └── 8
+    ├── move.8
+    │   └── right
+    │       └── 1
+    ├── move.15
+    │   └── up
+    │       └── 1
+    ├── move.21
+    │   └── right
+    │       └── 1
+    ├── color.22
+    │   └── #6be4bf
+    ├── move.30
+    │   └── up
+    │       └── 2
+    ├── color.31
+    │   └── #fc569a
+    ├── move.32
+    │   └── left
+    │       └── 1
+    │           └── animation
+    │               └── 3
+    ├── move.34
+    │   └── up
+    │       └── 1
+    ├── move.37
+    │   └── left
+    │       └── 1
+    └── color.38
+        └── #ffffff

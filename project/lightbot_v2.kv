@@ -23,7 +23,7 @@
                     on_press: root.open_from_file()
                 TextInput:
                     id: path
-                    text: "/Volumes/Niko/Python/Nikorter/examples/example1.txt"
+                    text: root.local_dir + "/../examples/example1.txt"
                     multiline: False
 
 
@@ -74,21 +74,21 @@
                     rgb: self.rgb
                     a: self.labyrinth_opacity
                 Rectangle:
-                    source: '/Volumes/Niko/Python/Nikorter/project/resources/textures/background/body_labyrinth.png'
+                    source: root.local_dir + '/resources/textures/background/body_labyrinth.png'
                     size: self.size
                     pos: (1000,0)
 
                 Color:
                     rgb: (1, 1, 1)
                 Rectangle:
-                    source: '/Volumes/Niko/Python/Nikorter/project/resources/textures/background/body_positions.png'
+                    source: root.local_dir + '/resources/textures/background/body_positions.png'
                     size: self.size
                     pos: (1000,0)
 
                 Color:
                     rgb: self.rgb
                 Rectangle:
-                    source: '/Volumes/Niko/Python/Nikorter/project/resources/textures/robot/robot_main.png'
+                    source: root.local_dir + '/resources/textures/robot/robot_main.png'
                     pos: self.pos
                     size: (100,100)
 
