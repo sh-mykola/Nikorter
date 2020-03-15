@@ -8,7 +8,6 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty, StringProperty
 from kivy.animation import Animation
-from kivy.uix.image import Image
 from kivy.core.audio import SoundLoader
 from kivy.metrics import dp
 from kivy.config import Config
@@ -79,14 +78,15 @@ class MyProgram(Widget):
         self.console.text = "Reseted!"
         self.robot.rgb = (1, 1, 1)
         Animation.cancel_all(self.robot)
-        anim = Animation(x=1500, y=0, duration=0.4, t='in_out_cubic')
+        anim = Animation(x=dp(750), y=dp(0), duration=0.4, t='in_out_cubic')
         anim.start(self.robot)
         # self.robot.pos = [1000, 0]
 
     def randomize_position(self):
         self.console.text = ""
-        x = [1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
-        y = [0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200]
+        x = [dp(500), dp(550), dp(600), dp(650), dp(700), dp(750), dp(800), dp(850), dp(900), dp(950), dp(1000)]
+        y = [dp(0), dp(50), dp(100), dp(150), dp(200), dp(250), dp(300), dp(350), dp(400), dp(450), dp(500), dp(550),
+             dp(600)]
 
         rand_x = random.choice(x)
         rand_y = random.choice(y)
