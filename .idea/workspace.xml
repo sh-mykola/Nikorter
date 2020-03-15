@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c01ef20-4bf6-493f-95ac-fe8554822a75" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/interpreter_code.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/interpreter_code.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/example4.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/interpreter_code_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/interpreter_code_v2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project/lightbot_v2.kv" beforeDir="false" afterPath="$PROJECT_DIR$/project/lightbot_v2.kv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/tree_text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/tree_text.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/tree_view.txt" beforeDir="false" afterPath="$PROJECT_DIR$/project/tree_view.txt" afterDir="false" />
     </list>
