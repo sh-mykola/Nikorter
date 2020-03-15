@@ -12,13 +12,13 @@
         BoxLayout:
             orientation: "vertical"
             size_hint_x: None
-            width: "500dp"
+            width: dp(500)
             BoxLayout:
                 size_hint_y: None
-                height: "25dp"
+                height: dp(25)
                 Button:
                     size_hint_x: None
-                    width: "75dp"
+                    width: dp(75)
                     text: "Open file"
                     on_press: root.open_from_file()
                 TextInput:
@@ -33,11 +33,11 @@
             CodeInput:
                 id: console
                 size_hint_y: None
-                height: "75dp"
+                height: dp(75)
 
             BoxLayout:
                 size_hint_y: None
-                height: "50dp"
+                height: dp(50)
                 on_parent: root.reset_position()
                 Button:
                     text: "Interpret"
@@ -50,13 +50,13 @@
                     on_press: root.reset_position()
                 Button:
                     size_hint_x: None
-                    width: "50dp"
+                    width: dp(50)
                     text: "?"
                     on_press: root.show_labyrinth()
 
         Widget:
             id: robot
-            pos: 0,0
+            pos: dp(0), dp(0)
             rgb: (0,0.5,1)
             labyrinth_opacity: 0
 
@@ -67,7 +67,7 @@
                 Rectangle:
                     # texture: self.ellipse_image.texture
                     size: self.size
-                    pos: (1000,0)
+                    pos: (dp(500),0)
 
 
                 Color:
@@ -76,19 +76,19 @@
                 Rectangle:
                     source: root.local_dir + '/resources/textures/background/body_labyrinth.png'
                     size: self.size
-                    pos: (1000,0)
+                    pos: (dp(500),0)
 
                 Color:
                     rgb: (1, 1, 1)
                 Rectangle:
                     source: root.local_dir + '/resources/textures/background/body_positions.png'
                     size: self.size
-                    pos: (1000,0)
+                    pos: (dp(500),0)
 
                 Color:
                     rgb: self.rgb
                 Rectangle:
                     source: root.local_dir + '/resources/textures/robot/robot_main.png'
                     pos: self.pos
-                    size: (100,100)
+                    size: (dp(50),dp(50))
 

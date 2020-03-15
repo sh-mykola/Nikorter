@@ -10,6 +10,7 @@ from kivy.properties import ObjectProperty, StringProperty
 from kivy.animation import Animation
 from kivy.uix.image import Image
 from kivy.core.audio import SoundLoader
+from kivy.metrics import dp
 from kivy.config import Config
 
 Config.set("graphics", "resizable", "0")
