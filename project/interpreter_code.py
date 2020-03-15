@@ -637,7 +637,7 @@ def run(input_code):
 
     print("-" * 50)
     try:
-        f2 = open("tree_view.txt", "w+")
+        f2 = open("tree_view.txt", "w+", encoding="utf-8")
         with open('tree_text.txt', 'r') as f:
             lines = f.readlines()[1:]
             root = Node(lines[0].split(" ")[0])
@@ -681,6 +681,7 @@ def run_test(input_code):
     f.write(tree + tree_last)
     f.close()
 
+    f2 = open("tree_view.txt", "w+", encoding="utf-8")
     with open('tree_text.txt', 'r') as f:
         lines = f.readlines()[1:]
         root = Node(lines[0].split(" ")[0])
@@ -693,12 +694,17 @@ def run_test(input_code):
             nodes[name] = Node(name, parent=nodes[line[0]])
 
         for pre, _, node in RenderTree(root):
-            print("%s%s" % (pre, node.name))
+            string = "%s%s" % (pre, node.name)
+            print(string)
+            f2.write(string + "\n")
+    f2.close()
 
 
-code = """color[#ffffff]
-if<color[#ffff00]>.color[#ff0000]
-elif<color[#ffffff]>.color[#ff00ff]
-else.color[#0000ff]"""
+code = """last.color[#ff0000]
+color[#0000ff]
+move.up(2)
+color[#00ff00]
+move.right(4).animation(2)
+last.move.up(2).animation(3)"""
 
 # run_test(code)
